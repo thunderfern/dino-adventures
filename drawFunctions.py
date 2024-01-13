@@ -12,3 +12,9 @@ def drawTrashCollection(surface, trashList):
     draw.rect(surface, "#000000", Rect(0, 0, 100, 100))
     #draw.rect(surface, "#000000", Rect(0, 0, 100, 100))
     return surface
+
+groundBlockImg = transform.scale(image.load("images/Yellow Dino Standing.png"), (125, 125))
+
+def drawGround(surface):
+    surface.blit(groundBlockImg, (100, 100))
+    return surface

@@ -68,6 +68,8 @@ while run:
         tmp = []
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
+        groundSurface = drawGround(groundSurface)
+        screen.blit(groundSurface, (x, y))
         trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
         screen.blit(trashCollectionSurface, (x, y))
         playerSurface = player.drawChar(playerSurface)
