@@ -26,6 +26,43 @@ grass0 = transform.scale(image.load("images/blocks/grass block 9.png"), (125, 12
 grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
 
 def drawGround(surface):
-    surface.blit(grass1, (100, 100))
-    surface.blit(grass2, (230, 100))
+    for i in range(0, 50):
+        surface.blit(grass2, (i * 125, 800))
+    for i in range(0,3):
+        surface.blit(grassFloat, (500 + (i * 125), 500))
+    # small vertical
+    surface.blit(grass2, (1300, 800 - 125))
+    # medium vertical
+    surface.blit(grass5, (1800, 800 - 125))
+    surface.blit(grass2, (1800, 800 - (125 * 2)))
+    # small vert
+    surface.blit(grass3, (1800 + 125, 800 - 125))
+    # large vertical ground
+    surface.blit(grass4, (2500, 800 - 125))
+    surface.blit(grass4, (2500, 800 - (125 * 2)))
+    surface.blit(grass1, (2500, 800 - (125 * 3)))
+
+    # highground
+    for i in range (0,5):
+        surface.blit(grass5, (2500 + 125 + (i * 125), 800 - 125))
+        surface.blit(grass5, (2500 + 125 + (i * 125), 800 - (125 * 2)))
+        surface.blit(grass2, (2500 + 125 + (i * 125), 800 - (125 * 3)))
+    # high floating blocks
+    surface.blit(grassFloat, (2500 + (125 * 7), 800 - (125 * 5)))
+    surface.blit(grassFloat, (2500 + (125 * 8), 800 - (125 * 5)))
+    # slightly high ground
+    for i in range (0,3):
+        surface.blit(grass5, (2500 + (125 * 6) + (i * 125), 800 - 125))
+        surface.blit(grass2, (2500 + (125 * 6) + (i * 125), 800 - (125 * 2)))
+    # end of slightly high ground
+    surface.blit(grass5, (2500 + (125 * 9), 800 - 125))
+    surface.blit(grass3, (2500 + (125 * 9), 800 - (125 * 2)))
+    surface.blit(grass3, (3750, 800 - 125))
+    # parkour!
+    surface.blit(grassFloat, (4000, 800 - (125 * 4)))
+    surface.blit(grassFloat, (4000 + (125 * 3), 800 - (125 * 3)))
+    surface.blit(grassFloat, (4000 + (125 * 5), 800 - (125 * 5)))
+    surface.blit(grassFloat, (4000 + (125 * 8), 800 - (125 * 5)))
+    surface.blit(grassFloat, (4000 + (125 * 11), 800 - (125 * 4)))
+    
     return surface
