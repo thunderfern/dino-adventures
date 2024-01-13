@@ -6,7 +6,7 @@ class Player(sprite.Sprite):
         super(Player, self).__init__()
         self.player = 0
         self.state = 0
-        self.imagelist = ["images/Yellow Dino Standing.png", "images/Yellow Dino Walk.png", "images/Red Dino Standing.png", "images/Red Dino Walk.png", "images/Blue Dino Standing.png", "images/Blue Dino Walk.png"]
+        self.imagelist = ["images/player/Yellow Dino Standing.png", "images/player/Yellow Dino Walk.png", "images/player/Red Dino Standing.png", "images/player/Red Dino Walk.png", "images/player/Blue Dino Standing.png", "images/player/Blue Dino Walk.png"]
         self.processedImage = []
         for img in self.imagelist:
             self.processedImage.append(transform.scale(image.load(img), (125, 125)))
