@@ -11,9 +11,11 @@ clock = time.Clock()
 #initializing the surfaces
 trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((width, height))
+playerSurface = Surface((width, height))
 
 xchange, ychange, x, y = 0, 0, 0, 0
 
+player = Player()
 trash1 = Trash()
 
 waters = []
@@ -50,13 +52,13 @@ while run:
         for e in event.get():
             if e.type == MOUSEBUTTONDOWN:
                 mousex, mousey = mouse.get_pos()
-                if mousex == 
 
         tmp = []
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
         trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
-
+        playerSurface = player.drawChar(playerSurface)
+        #screen.blit(playerSurface, (0, 0))
     #    pass
     display.flip()
     clock.tick(60)

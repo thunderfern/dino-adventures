@@ -13,6 +13,12 @@ class Player(sprite.Sprite):
             self.player = 2
         else:
             self.player = 3
+    
+    def drawChar(self, surface):
+        if self.player == 1:
+            surface.fill((0, 0, 0, 0))
+            surface.blit(image.load("images/Yellow Dino Standing.png"), (0, 0))
+        return surface
 
 class Ground(sprite.Sprite):
     def __init__(self):
