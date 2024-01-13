@@ -10,6 +10,12 @@ class Player(sprite.Sprite):
         self.processedImage = []
         for img in self.imagelist:
             self.processedImage.append(transform.scale(image.load(img), (125, 125)))
+        self.mask = mask.from_surface(self.processedImage[0])
+        self.rect = self.mask.get_rect(center = (100, 100))
+
+    #def updateMask(self, x, y):
+        #self.rect.center = x, y
+        #self.mask = mask.from_surface(self.processedImage[0])
 
     def change(self, num):
         if num == 1:
@@ -24,6 +30,7 @@ class Player(sprite.Sprite):
         walk = 0
         if self.state < 8:
             walk = 1
+        #self.mask = mask.from_surface(self.processedImage[self.player * 2 + walk])
         surface.blit(self.processedImage[self.player * 2 + walk], (0, 0))
         return surface
     
@@ -32,8 +39,11 @@ class Player(sprite.Sprite):
         self.state %= 16
 
 class Ground(sprite.Sprite):
-    def __init__(self):
+    def __init__(self, img):
         super(Ground, self).__init__()
+        self.img = img
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()
 
 class Background(sprite.Sprite):
     def __init__(self):

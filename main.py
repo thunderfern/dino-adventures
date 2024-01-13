@@ -10,13 +10,15 @@ clock = time.Clock()
 
 #initializing the surfaces
 trashCollectionSurface = Surface((width, height))
-groundSurface = Surface((10000, 10000))
+groundSurface = Surface((10000, 10000)).convert_alpha()
 playerSurface = Surface((width, height)).convert_alpha()
 
 xchange, ychange, x, y = 0, 0, 0, 0
 
 player = Player()
 trash1 = Trash()
+groundSurface = drawGround(groundSurface)
+ground = Ground(groundSurface)
 
 waters = []
 trashes = []
@@ -53,13 +55,25 @@ while run:
     if curkeys[K_RIGHT]:
         x -= 5
     if curkeys[K_UP]:
-        y += 5
+        y -= 5
     if curkeys[K_DOWN]:
         y -= 5
-    x = min(0, x)
-    y = min(0, y)
+   # x = max(0, x)
+    #y = max(0, y)
+    tmp1, tmp2 = 0, 0
+    if player.mask.overlap(ground.mask, (x, y)):
+        tmp1, tmp2 = player.mask.overlap(ground.mask, (x, y))
+        #print(tmp1, tmp2)
+        #print(ground.mask.get_size())
+        #print(player.mask.get_size())
+        ychange = 0
+        print(tmp1, tmp2)
+    else:
+        ychange += 1
+        #print("ok")
     #if curState == 1:
     #    pass
+    y -= ychange
     if curState == 2:
         for e in event.get():
             if e.type == MOUSEBUTTONDOWN:
@@ -68,14 +82,20 @@ while run:
         tmp = []
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
-        groundSurface = drawGround(groundSurface)
-        screen.blit(groundSurface, (x, y))
-        #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
-        #screen.blit(trashCollectionSurface, (x, y))
-        playerSurface = player.drawChar(playerSurface)
-        screen.blit(playerSurface, (0, 0))
-        player.updateState()
+    #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
+    #screen.blit(trashCollectionSurface, (x, y))
+
+    groundSurface = drawGround(groundSurface)
+    screen.blit(groundSurface, (x, y))
+    playerSurface = player.drawChar(playerSurface)
+    screen.blit(playerSurface, (0, 0))
+    #print(x, y)
+    player.updateState()
+    #player.updateMask(x, y)
+    #screen.blit(ground.mask.to_surface(), (0, 0))
+    #screen.blit(player.mask.to_surface(), (x, y))
     #    pass
+    draw.rect(screen, "#FF0000", Rect(tmp1, tmp2, 10, 10))
     display.flip()
     clock.tick(60)
 
