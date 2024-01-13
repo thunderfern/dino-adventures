@@ -60,6 +60,7 @@ while run:
         screen.blit(trashCollectionSurface, (0, 0))
         playerSurface = player.drawChar(playerSurface)
         screen.blit(playerSurface, (0, 0))
+        player.updateState()
     #    pass
     display.flip()
     clock.tick(60)
