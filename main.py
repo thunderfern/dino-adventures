@@ -10,7 +10,7 @@ clock = time.Clock()
 
 #initializing the surfaces
 trashCollectionSurface = Surface((width, height))
-groundSurface = Surface((width, height))
+groundSurface = Surface((10000, 10000))
 playerSurface = Surface((width, height)).convert_alpha()
 
 xchange, ychange, x, y = 0, 0, 0, 0
