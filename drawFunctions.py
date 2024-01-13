@@ -10,5 +10,5 @@ def drawTrashCollection(surface, trashList):
 
     #back and forward buttons
     draw.rect(surface, "#000000", Rect(0, 0, 100, 100))
-    draw.rect(surface, "#000000", Rect(0, 0, 100, 100))
+    #draw.rect(surface, "#000000", Rect(0, 0, 100, 100))
     return surface

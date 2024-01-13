@@ -39,16 +39,22 @@ while run:
         if e.type == KEYDOWN:
             if e.key == K_ESCAPE:
                 run = False
-            if e.key == K_RIGHT:
-                x -= 10
-            if e.key == K_LEFT:
-                x += 10
             if e.key == K_SPACE:
                 y += 10
+    curkeys = key.get_pressed()
+    if curkeys[K_LEFT]:
+        x += 5
+    if curkeys[K_RIGHT]:
+        x -= 5
+    if curkeys[K_UP]:
+        y += 5
+    if curkeys[K_DOWN]:
+        y -= 5
+    x = min(0, x)
+    y = min(0, y)
     #if curState == 1:
     #    pass
     if curState == 2:
-        screen.blit(trashCollectionSurface, (0, 0))
         for e in event.get():
             if e.type == MOUSEBUTTONDOWN:
                 mousex, mousey = mouse.get_pos()
@@ -57,7 +63,7 @@ while run:
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
         trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
-        screen.blit(trashCollectionSurface, (0, 0))
+        screen.blit(trashCollectionSurface, (x, y))
         playerSurface = player.drawChar(playerSurface)
         screen.blit(playerSurface, (0, 0))
         player.updateState()

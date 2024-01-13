@@ -5,7 +5,8 @@ class Player(sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
         self.player = 1
-        self.state = 1
+        self.state = 0
+        self.imagelist = [transform.scale(image.load("images/Yellow Dino Standing.png"), (100, 100))]
 
     def change(self, num):
         if num == 1:
@@ -18,9 +19,9 @@ class Player(sprite.Sprite):
     def drawChar(self, surface):
         surface.fill((0, 0, 0, 0))
         if self.player == 1 and self.state < 8:
-            surface.blit(image.load("images/Yellow Dino Standing.png"), (0, 0))
+            surface.blit(transform.scale(image.load("images/Yellow Dino Standing.png"), (125, 125)), (0, 0))
         else:
-            surface.blit(image.load("images/Yellow Dino Walk.png"), (0, 0))
+            surface.blit(transform.scale(image.load("images/Yellow Dino Walk.png"), (125, 125)), (0, 0))
         return surface
     
     def updateState(self):
