@@ -1,4 +1,5 @@
 from pygame import *
+from drawFunctions import *
 
 class Player(sprite.Sprite):
     def __init__(self):
