@@ -11,7 +11,7 @@ clock = time.Clock()
 #initializing the surfaces
 trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((width, height))
-playerSurface = Surface((width, height))
+playerSurface = Surface((width, height)).convert_alpha()
 
 xchange, ychange, x, y = 0, 0, 0, 0
 
@@ -57,8 +57,9 @@ while run:
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
         trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
+        screen.blit(trashCollectionSurface, (0, 0))
         playerSurface = player.drawChar(playerSurface)
-        #screen.blit(playerSurface, (0, 0))
+        screen.blit(playerSurface, (0, 0))
     #    pass
     display.flip()
     clock.tick(60)
