@@ -41,6 +41,12 @@ while run:
                 run = False
             if e.key == K_SPACE:
                 y += 10
+            if e.key == K_1:
+                player.change(1)
+            if e.key == K_2:
+                player.change(2)
+            if e.key == K_3:
+                player.change(3)
     curkeys = key.get_pressed()
     if curkeys[K_LEFT]:
         x += 5

@@ -4,24 +4,27 @@ from drawFunctions import *
 class Player(sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.player = 1
+        self.player = 0
         self.state = 0
-        self.imagelist = [transform.scale(image.load("images/Yellow Dino Standing.png"), (100, 100))]
+        self.imagelist = ["images/Yellow Dino Standing.png", "images/Yellow Dino Walk.png", "images/Red Dino Standing.png", "images/Red Dino Walk.png", "images/Blue Dino Standing.png", "images/Blue Dino Walk.png"]
+        self.processedImage = []
+        for img in self.imagelist:
+            self.processedImage.append(transform.scale(image.load(img), (125, 125)))
 
     def change(self, num):
         if num == 1:
-            self.player = 1
+            self.player = 0
         elif num == 2:
-            self.player = 2
+            self.player = 1
         else:
-            self.player = 3
+            self.player = 2
     
     def drawChar(self, surface):
         surface.fill((0, 0, 0, 0))
-        if self.player == 1 and self.state < 8:
-            surface.blit(transform.scale(image.load("images/Yellow Dino Standing.png"), (125, 125)), (0, 0))
-        else:
-            surface.blit(transform.scale(image.load("images/Yellow Dino Walk.png"), (125, 125)), (0, 0))
+        walk = 0
+        if self.state < 8:
+            walk = 1
+        surface.blit(self.processedImage[self.player * 2 + walk], (0, 0))
         return surface
     
     def updateState(self):
