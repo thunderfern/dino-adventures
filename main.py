@@ -41,7 +41,10 @@ trashState = 0
 
 #just click to exit
 run = True
+doublejump = False
+justjumped = False
 while run:
+    justjumped = False
     for e in event.get():
         if e.type == QUIT:
             run = False
@@ -56,6 +59,15 @@ while run:
                 player.change(2)
             if e.key == K_3:
                 player.change(3)
+            if e.key == K_UP:
+                if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+                    ychange = -25
+                    justjumped = True
+                elif doublejump == False and player.player == 0:
+                    ychange = -25
+                    doublejump = True
+                    justjumped = True
+
     curkeys = key.get_pressed()
     
     if curkeys[K_LEFT]:
@@ -66,14 +78,21 @@ while run:
         if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x -= 10
         player.setOrientation(0)
-    if curkeys[K_UP]:
-        if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
-            ychange -= 25
-    y -= ychange
-    if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+    #if curkeys[K_UP]:
+        #if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+            #ychange -= 25
+   
+    
+    if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) and justjumped == False:
+        while playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+            y += 1
         ychange = 0
+        doublejump = False
+        y -= 1
     else:
         ychange += 2
+    y -= ychange
+
     if playerTop.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
         ychange = 2
     
