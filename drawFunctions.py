@@ -95,3 +95,13 @@ def drawLevel2(surface):
         surface.blit(grassFloat, (4050 + (i * 125), 800 - (125 * 2)))
     
     return surface
+
+#loading the trash
+bottle = transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125))
+level1Trash = [Trash(bottle)]
+
+def drawTrash1(surface):
+    surface.fill((0, 0, 0, 0))
+    if level1Trash[0].collected == False:
+        surface.blit(level1Trash[0].img, (0, 0))
+    return surface

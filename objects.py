@@ -1,5 +1,5 @@
 from pygame import *
-from drawFunctions import *
+#from drawFunctions import *
 
 class Player(sprite.Sprite):
     def __init__(self):
@@ -60,8 +60,12 @@ class Obstacle(sprite.Sprite):
         super(Obstacle, self).__init__()
 
 class Trash(sprite.Sprite):
-    def __init__(self):
+    def __init__(self, tmpimg):
         super(Trash, self).__init__()
+        self.collected = False
+        self.img = tmpimg
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()
 
 class Water(sprite.Sprite):
     def __init__(self):

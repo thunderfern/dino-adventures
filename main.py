@@ -12,11 +12,12 @@ clock = time.Clock()
 trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((10000, 10000)).convert_alpha()
 playerSurface = Surface((width, height)).convert_alpha()
+levelTrashSurface = Surface((10000, 10000)).convert_alpha()
 
 xchange, ychange, x, y = 0, 0, 500, 0
 
 player = Player()
-trash1 = Trash()
+trash1 = Trash(transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125)))
 playerRight = PlayerCollisions("images/player/Collide Right.png")
 playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
@@ -95,6 +96,8 @@ while run:
     screen.blit(playerSurface, (width / 2, height / 2))
     #screen.blit(playerright.mask.to_surface(), (width / 2, height / 2))
     #print(x, y)
+    levelTrashSurface = drawTrash1(levelTrashSurface)
+    screen.blit(levelTrashSurface, (x, y))
     player.updateState()
     #player.updateMask(x, y)
     #screen.blit(ground.mask.to_surface(), (0, 0))
