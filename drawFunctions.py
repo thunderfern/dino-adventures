@@ -78,12 +78,16 @@ def drawLevel2(surface):
     # stepping off
     surface.blit(grassFloat, (1250, 800-125))
     # two long floating
-    surface.blit(grassFloat, (1500, 800 - (125 * 2)))
-    surface.blit(grassFloat, (1500 + 125, 800 - (125 * 2)))
+    surface.blit(grassFloat, (1600, 800 - (125 * 2)))
+    surface.blit(grassFloat, (1600 + 125, 800 - (125 * 2)))
     # two long floating lower
-    surface.blit(grassFloat, (1900, 800 - 125))
-    surface.blit(grassFloat, (1900 + 125, 800 - 125))
-    # small float
-    surface.blit(grassFloat, (2300, 800 - (125 * 2)))
+    surface.blit(grassFloat, (2100, 800 - 125))
+    surface.blit(grassFloat, (2100 + 125, 800 - 125))
+    # small floats
+    surface.blit(grassFloat, (2600, 800 - (125 * 2)))
+    surface.blit(grassFloat, (2900, 800 - (125 * 3)))
+    surface.blit(grassFloat, (3400, 800 - 125))
+    for i in range(0,5):
+        surface.blit(grassFloat, (3750 + (i * 125), 800 - (125 * 2)))
     
     return surface
