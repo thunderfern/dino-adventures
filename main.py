@@ -44,7 +44,6 @@ playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
 playerBot = PlayerCollisions("images/player/Collide Bot.png")
 
-waters = []
 trashes = []
 trashCollection = [Trash(bottle, (0, 0)), Trash(bag, (0, 0)), Trash(plastic, (0, 0)), Trash(battery, (0, 0))]
 
@@ -77,6 +76,9 @@ levelreset = level
 playbutton = Button()
 mouseblock = Mouse()
 treasure = Treasure()
+backgroundsurf = Surface((10000, 10000)).convert_alpha()
+backgroundsurf.blit(transform.scale(image.load("images/Placeholder BG.png"), (19200 / 2, 10800 / 2)), (0, 0))
+#1920, 1080
 mousebuttondown = False
 upkey = False
 rightkey = False
@@ -102,10 +104,10 @@ while run:
                     spacekey = True
             if e.type == MOUSEBUTTONDOWN:
                 mousebuttondown = True
-            
+            #200/128
     if curState == 1:
         mousex, mousey = mouse.get_pos()
-        screen.fill("#000000")
+        screen.blit(transform.scale(image.load("images/home page.png"), (width, width / 200 * 128)).convert_alpha(), (0, 0))
         if playbutton.mask.overlap(mouseblock.mask, (width / 2 + 125 / 2 - mousex, height / 2 + 125 / 2 - mousey)):
             screen.blit(playbutton.hoverimg, (width / 2 - 125 / 2, height / 2 - 125 / 2))
             if mousebuttondown:
@@ -240,13 +242,13 @@ while run:
             level += 1
             levelreset = level
 
-        screen.fill("#000000")
+        #screen.fill("#000000")
 
         #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
         #screen.blit(trashCollectionSurface, (x, y))
         
         #groundSurface = drawLevel1(groundSurface)
-        
+        screen.blit(backgroundsurf, (x - 500, y - 3500))
         screen.blit(groundSurface, (x, y))
         playerSurface = player.drawChar(playerSurface)
         screen.blit(playerSurface, (width / 2, height / 2))
