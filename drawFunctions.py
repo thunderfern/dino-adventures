@@ -104,7 +104,7 @@ level1Trash = [Trash(bottle), Trash(bottle), Trash(bottle), Trash(bottle), Trash
 def drawTrash1(surface):
     surface.fill((0, 0, 0, 0))
     if level1Trash[0].collected == False:
-        surface.blit(level1Trash[0].img, (500 + 125, 800 - (2 * 125)))
+        surface.blit(level1Trash[0].img, (500 + 125, 800 - (3 * 125)))
     if level1Trash[1].collected == False:
         surface.blit(level1Trash[1].img, (0, 0))
     if level1Trash[2].collected == False:
