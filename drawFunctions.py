@@ -103,7 +103,7 @@ bag = transform.scale(image.load("images/trash/Plastic Bag.png"), (125, 125))
 plastic = transform.scale(image.load("images/trash/Microplastic.png"), (125, 125))
 batter = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
 
-level1Trash = [Trash(bottle), Trash(bottle), Trash(bottle), Trash(bottle), Trash(bottle)]
+level1Trash = [Trash(bottle), Trash(bag), Trash(bottle), Trash(plastic), Trash(batter)]
 
 def drawTrash1(surface):
     surface.fill((0, 0, 0, 0))
