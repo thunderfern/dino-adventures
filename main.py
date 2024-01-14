@@ -63,7 +63,7 @@ run = True
 doublejump = False
 justjumped = False
 scaling = False
-if level == 1:
+'''if level == 1:
     groundSurface = drawLevel1(groundSurface)
     obstacleSurface = drawObstacle1(obstacleSurface)
     levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
@@ -74,7 +74,9 @@ else:
 ground = Ground(groundSurface)
 obstacle = Obstacle(obstacleSurface)
 trash = TrashLayer(levelTrashSurface)
+'''
 levelreset = level
+levelrestart = level
 playbutton = Button("images/buttons/Play Button Normal State.png", "images/buttons/Play Button Hover State.png", 125)
 inventorybutton = Button("images/buttons/Inventory Normal.png", "images/buttons/Inventory Hover.png", 125)
 mouseblock = Mouse()
@@ -139,6 +141,10 @@ while run:
         justjumped = False
         scaling = False
         if levelreset == 1:
+            screen.fill("#FFFFFF")
+            loadimg = transform.scale(image.load("images/loading.png"), (width, width / 200 * 128)).convert_alpha()
+            screen.blit(loadimg, (width / 4, height / 3))
+            display.flip()
             for t in level1Trash:
                 t.collected = False
             groundSurface = drawLevel1(groundSurface)
@@ -153,6 +159,11 @@ while run:
             obstacle = Obstacle(obstacleSurface)
             trash = TrashLayer(levelTrashSurface)
         elif levelreset == 2:
+            screen.fill("#FFFFFF")
+            #200/128
+            loadimg = transform.scale(image.load("images/loading.png"), (width, width / 200 * 128)).convert_alpha()
+            screen.blit(loadimg, (width / 4, height / 3))
+            display.flip()
             for t in level2Trash:
                 t.collected = False
             groundSurface = drawLevel2(groundSurface)
@@ -164,7 +175,22 @@ while run:
             ground = Ground(groundSurface)
             obstacle = Obstacle(obstacleSurface)
             trash = TrashLayer(levelTrashSurface)
+        if levelrestart == 1:
+            for t in level1Trash:
+                t.collected = False
+            levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+            x = 500
+            y = 0
+            ychange = 0
+        if levelrestart == 2:
+            for t in level2Trash:
+                t.collected = False
+            levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
+            x = 500
+            y = 0
+            ychange = 0
 
+        levelrestart = 0
         levelreset = 0
 
         curkeys = key.get_pressed()
@@ -248,11 +274,12 @@ while run:
             ychange = 2
         
         if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
-            levelreset = level
+            levelrestart = level
         
         if player.mask.overlap(treasure.mask, (x - width / 2 + 7450, y - height / 2 + 1050)):
             level += 1
             levelreset = level
+            levelrestart = level
 
         #screen.fill("#000000")
 
