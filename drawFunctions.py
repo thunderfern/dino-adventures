@@ -30,6 +30,7 @@ def drawLevel1(surface):
     # draw ground
     for i in range(0, 50):
         surface.blit(grass2, (i * 125, 800))
+    # floating bit
     for i in range(0,3):
         surface.blit(grassFloat, (500 + (i * 125), 500))
     # small vertical
@@ -98,10 +99,18 @@ def drawLevel2(surface):
 
 #loading the trash
 bottle = transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125))
-level1Trash = [Trash(bottle)]
+level1Trash = [Trash(bottle), Trash(bottle), Trash(bottle), Trash(bottle), Trash(bottle)]
 
 def drawTrash1(surface):
     surface.fill((0, 0, 0, 0))
     if level1Trash[0].collected == False:
-        surface.blit(level1Trash[0].img, (0, 0))
+        surface.blit(level1Trash[0].img, (500 + 125, 800 - (2 * 125)))
+    if level1Trash[1].collected == False:
+        surface.blit(level1Trash[1].img, (0, 0))
+    if level1Trash[2].collected == False:
+        surface.blit(level1Trash[2].img, (0, 0))
+    if level1Trash[3].collected == False:
+        surface.blit(level1Trash[3].img, (0, 0))
+    if level1Trash[4].collected == False:
+        surface.blit(level1Trash[4].img, (0, 0))
     return surface
