@@ -44,7 +44,7 @@ def drawLevel1(surface):
     surface.blit(grass4, (2500, 800 - 125))
     surface.blit(grass4, (2500, 800 - (125 * 2)))
     surface.blit(grass1, (2500, 800 - (125 * 3)))
-    # highground
+    # high ground
     for i in range (0,5):
         surface.blit(grass5, (2500 + 125 + (i * 125), 800 - 125))
         surface.blit(grass5, (2500 + 125 + (i * 125), 800 - (125 * 2)))
@@ -53,13 +53,22 @@ def drawLevel1(surface):
     surface.blit(grassFloat, (2500 + (125 * 7), 800 - (125 * 5)))
     surface.blit(grassFloat, (2500 + (125 * 8), 800 - (125 * 5)))
     # slightly high ground
-    for i in range (0,3):
-        surface.blit(grass5, (2500 + (125 * 6) + (i * 125), 800 - 125))
-        surface.blit(grass2, (2500 + (125 * 6) + (i * 125), 800 - (125 * 2)))
-    # end of slightly high ground
+    surface.blit(grass5, (2500 + (125 * 6), 800 - 125))
+    surface.blit(grass2, (2500 + (125 * 6), 800 - (125 * 2)))
+    surface.blit(grass5, (2500 + (125 * 7), 800 - 125))
+    surface.blit(grass2, (2500 + (125 * 7), 800 - (125 * 2)))
+    # high ground
+    surface.blit(grass5, (2500 + (125 * 8), 800 - 125))
+    surface.blit(grass5, (2500 + (125 * 8), 800 - (125 * 2)))
+    surface.blit(grass2, (2500 + (125 * 8), 800 - (125 * 3)))
+    # end of  high ground
     surface.blit(grass5, (2500 + (125 * 9), 800 - 125))
     surface.blit(grass3, (2500 + (125 * 9), 800 - (125 * 2)))
+    # step
     surface.blit(grass3, (3750, 800 - 125))
+    # headbump
+    surface.blit(grassFloat, (4000, 800 - (125 * 6)))
+    surface.blit(grassFloat, (4000 + 125, 800 - (125 * 6)))
     # parkour!
     surface.blit(grassFloat, (4000, 800 - (125 * 4)))
     surface.blit(grassFloat, (4000 + (125 * 3), 800 - (125 * 3)))
@@ -154,6 +163,8 @@ def drawObstacle1(surface):
     surface.blit(spike, (1800 - 125, 800 - 125))
     surface.blit(spike, (2700, 800 - (125 * 4)))
     surface.blit(spike, ((2500 + (125 * 6), 800 - (125 * 3))))
+    surface.blit(spike, (4000, 800 - (125 * 7)))
+    surface.blit(spike, (4000 + 125, 800 - (125 * 7)))
     for i in range(0, 6):
         surface.blit(spike, (4000 + (125 * i * 2), 800 - 125))
     return surface
