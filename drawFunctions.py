@@ -76,12 +76,12 @@ def drawLevel2(surface):
     surface.fill((0, 0, 0, 0))
     for i in range(0, 10):
         surface.blit(grass2, (i * 125, 800))
-    # stepping off
+    # stepping off piece
     surface.blit(grassFloat, (1250, 800-125))
-    # two long floating
+    # two-long floating
     surface.blit(grassFloat, (1600, 800 - (125 * 2)))
     surface.blit(grassFloat, (1600 + 125, 800 - (125 * 2)))
-    # two long floating lower
+    # two-long floating lower
     surface.blit(grassFloat, (2100, 800 - 125))
     surface.blit(grassFloat, (2100 + 125, 800 - 125))
     # vertical wall
@@ -120,3 +120,20 @@ def drawTrash1(surface):
     if level1Trash[5].collected == False:
         surface.blit(level1Trash[5].img, (4000 + (125 * 11), 800 - (125 * 5)))
     return surface
+
+level2Trash = [Trash(bag), Trash(batter), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
+
+def drawTrash2(surface):
+    surface.fill((0, 0, 0, 0))
+    if level2Trash[0].collected == False:
+        surface.blit(level2Trash[0].img, (125 * 2.5, 800 - (125 * 2)))
+    if level2Trash[1].collected == False:
+        surface.blit(level2Trash[1].img, (1800, 800 - (125 * 4)))
+    if level2Trash[2].collected == False:
+        surface.blit(level2Trash[2].img, (2475, 800 - (125 * 3)))
+    if level2Trash[3].collected == False:
+        surface.blit(level2Trash[3].img, (3100, 800 - (125 * 4)))
+    if level2Trash[4].collected == False:
+        surface.blit(level2Trash[4].img, (3700, 800 - (125 * 3)))
+    if level2Trash[5].collected == False:
+        surface.blit(level2Trash[5].img, (4300, 800 - (125 * 4)))
