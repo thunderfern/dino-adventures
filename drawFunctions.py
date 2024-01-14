@@ -24,10 +24,10 @@ grass7 = transform.scale(image.load("images/blocks/grass block 7.png"), (125, 12
 grass8 = transform.scale(image.load("images/blocks/grass block 8.png"), (125, 125))
 grass0 = transform.scale(image.load("images/blocks/grass block 9.png"), (125, 125))
 grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
-grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
-grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
-grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
-grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
+grassFloatR = transform.scale(image.load("images/blocks/grass block float right.png"), (125, 125))
+grassFloatM = transform.scale(image.load("images/blocks/grass block float middle.png"), (125, 125))
+grassFloatL = transform.scale(image.load("images/blocks/grass block float left.png"), (125, 125))
+fleshFloat = transform.scale(image.load("images/blocks/flesh block float.png"), (125, 125))
 
 def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))
@@ -35,8 +35,9 @@ def drawLevel1(surface):
     for i in range(0, 50):
         surface.blit(grass2, (i * 125, 800))
     # floating bit
-    for i in range(0,3):
-        surface.blit(grassFloat, (500 + (i * 125), 500))
+        surface.blit(grassFloatL, (500, 500))
+        surface.blit(grassFloatM, (500 + 125, 500))
+        surface.blit(grassFloatR, (500 + (125 * 2), 500))
     # small vertical
     surface.blit(grass2, (1300, 800 - 125))
     # medium vertical
@@ -54,10 +55,10 @@ def drawLevel1(surface):
         surface.blit(grass5, (2500 + 125 + (i * 125), 800 - (125 * 2)))
         surface.blit(grass2, (2500 + 125 + (i * 125), 800 - (125 * 3)))
     # high floating blocks (headbump)
-    surface.blit(grassFloat, (2500 + (125 * 5), 800 - (125 * 5)))
-    surface.blit(grassFloat, (2500 + (125 * 6), 800 - (125 * 5)))
-    surface.blit(grassFloat, (2500 + (125 * 7), 800 - (125 * 5)))
-    surface.blit(grassFloat, (2500 + (125 * 8), 800 - (125 * 5)))
+    surface.blit(grassFloatL, (2500 + (125 * 5), 800 - (125 * 5)))
+    surface.blit(grassFloatM, (2500 + (125 * 6), 800 - (125 * 5)))
+    surface.blit(grassFloatM, (2500 + (125 * 7), 800 - (125 * 5)))
+    surface.blit(grassFloatR, (2500 + (125 * 8), 800 - (125 * 5)))
     # slightly high ground
     surface.blit(grass5, (2500 + (125 * 6), 800 - 125))
     surface.blit(grass2, (2500 + (125 * 6), 800 - (125 * 2)))
@@ -102,11 +103,11 @@ def drawLevel2(surface):
     # stepping off piece
     surface.blit(grassFloat, (1250, 800-125))
     # two-long floating
-    surface.blit(grassFloat, (1600, 800 - (125 * 2)))
-    surface.blit(grassFloat, (1600 + 125, 800 - (125 * 2)))
+    surface.blit(grassFloatL, (1600, 800 - (125 * 2)))
+    surface.blit(grassFloatR, (1600 + 125, 800 - (125 * 2)))
     # two-long floating lower
-    surface.blit(grassFloat, (2100, 800 - 125))
-    surface.blit(grassFloat, (2100 + 125, 800 - 125))
+    surface.blit(grassFloatL, (2100, 800 - 125))
+    surface.blit(grassFloatR, (2100 + 125, 800 - 125))
     # vertical wall
     surface.blit(grass2, (2600, 800 - (125 * 3)))
     surface.blit(grass8, (2600, 800 - (125 * 2)))
