@@ -7,6 +7,8 @@ init()
 screen = display.set_mode()
 width, height = screen.get_size()
 clock = time.Clock()
+font.init()
+my_font = font.SysFont('Comic Sans MS', 18)
 
 #trash
 bottle = transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125))
@@ -123,7 +125,6 @@ while run:
     elif curState == 2:
         mousex, mousey = mouse.get_pos()
         screen.fill("#FFFFFF")
-
         locked = transform.scale(image.load("images/Locked.png"), (height / 5 * 2, height / 5 * 2)).convert_alpha()
         unlocked = transform.scale(image.load("images/Unlocked.png"), (height / 5 * 2, height / 5 * 2)).convert_alpha()
         img1 = locked
@@ -131,26 +132,49 @@ while run:
         img3 = locked
         img4 = locked
         #img1, img2, img3, img4 = locked, locked, locked, locked
+        # inventory descriptions
+        textBottle = my_font.render('It can take over 400 years for', False, (0, 0, 0))
+        textBottle1 = my_font.render('plastic bottles to biodegrade.', False, (0, 0, 0))
+        textBottle2 = my_font.render('In the past 60 years, 6.3', False, (0, 0, 0))
+        textBottle3 = my_font.render('billion tons of plastic', False, (0, 0, 0))
+        textBottle4 = my_font.render('became plastic waste.', False, (0, 0, 0))
+        textBag = my_font.render('Is it a bird? Is it a ', False, (0, 0, 0))
+        textBag = my_font.render('Is it a bird? Is it a jellyfish? No! It’s a… plastic bag? The appearance of plastic bags resembles many plants and prey in some animals’ diets.', False, (0, 0, 0))
+        textBag = my_font.render('Is it a bird? Is it a jellyfish? No! It’s a… plastic bag? The appearance of plastic bags resembles many plants and prey in some animals’ diets.', False, (0, 0, 0))
+        textBag = my_font.render('Is it a bird? Is it a jellyfish? No! It’s a… plastic bag? The appearance of plastic bags resembles many plants and prey in some animals’ diets.', False, (0, 0, 0))
+        textBag = my_font.render('Is it a bird? Is it a jellyfish? No! It’s a… plastic bag? The appearance of plastic bags resembles many plants and prey in some animals’ diets.', False, (0, 0, 0))
+        textBag = my_font.render('Is it a bird? Is it a jellyfish? No! It’s a… plastic bag? The appearance of plastic bags resembles many plants and prey in some animals’ diets.', False, (0, 0, 0))
+
+        textPlastic = my_font.render('Fishing nets lost at sea often get caught on animals in water, potentially injuring them and preventing mammals and birds from rising to the surface to breathe.', False, (0, 0, 0))
+        textBatter = my_font.render('E-waste is the fastest growing type of solid waste. Trash such as batteries leak toxic chemicals into its environment which are extremely harmful to plants and animals.', False, (0, 0, 0))
         if trashCollection[0].collected:
             img1 = Surface((1000, 1000)).convert_alpha()
             img1.fill((0, 0, 0, 0))
             img1.blit(unlocked, (0, 0))
             img1.blit(bottle, (0, 0))
+            img1.blit(textBottle, (70, 70))
+            img1.blit(textBottle1, (70, 120))
+            img1.blit(textBottle2, (70, 170))
+            img1.blit(textBottle3, (70, 220))
+            img1.blit(textBottle4, (70, 270))
         if trashCollection[1].collected:
             img2 = Surface((1000, 1000)).convert_alpha()
             img2.fill((0, 0, 0, 0))
             img2.blit(unlocked, (0, 0))
             img2.blit(bag, (0, 0))
+            img2.blit(textBag, (0,0))
         if trashCollection[2].collected:
             img3 = Surface((1000, 1000)).convert_alpha()
             img3.fill((0, 0, 0, 0))
             img3.blit(unlocked, (0, 0))
             img3.blit(plastic, (0, 0))
+            img3.blit(textPlastic, (0,0))
         if trashCollection[3].collected:
             img4 = Surface((1000, 1000)).convert_alpha()
             img4.fill((0, 0, 0, 0))
             img4.blit(unlocked, (0, 0))
             img4.blit(battery, (0, 0))
+            img4.blit(textBatter, (0,0))
         screen.blit(img1, (width / 7, height / 12))
         screen.blit(img2, (width / 7 * 2 + height / 5 * 2, height / 12))
         screen.blit(img3, (width / 7, height / 12 * 2 + height / 5 * 2))
