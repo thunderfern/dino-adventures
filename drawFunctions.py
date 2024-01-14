@@ -25,7 +25,8 @@ grass8 = transform.scale(image.load("images/blocks/grass block 8.png"), (125, 12
 grass0 = transform.scale(image.load("images/blocks/grass block 9.png"), (125, 125))
 grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
 
-def drawGround(surface):
+def drawLevel1(surface):
+    surface.fill((0, 0, 0, 0))
     for i in range(0, 50):
         surface.blit(grass2, (i * 125, 800))
     for i in range(0,3):
@@ -65,4 +66,7 @@ def drawGround(surface):
     surface.blit(grassFloat, (4000 + (125 * 8), 800 - (125 * 5)))
     surface.blit(grassFloat, (4000 + (125 * 11), 800 - (125 * 4)))
     
+    return surface
+
+def drawLevel2(surface):
     return surface

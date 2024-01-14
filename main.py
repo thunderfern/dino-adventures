@@ -17,7 +17,7 @@ xchange, ychange, x, y = 0, 0, 0, 0
 
 player = Player()
 trash1 = Trash()
-groundSurface = drawGround(groundSurface)
+groundSurface = drawLevel2(groundSurface)
 ground = Ground(groundSurface)
 
 waters = []
@@ -85,7 +85,7 @@ while run:
     #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
     #screen.blit(trashCollectionSurface, (x, y))
 
-    groundSurface = drawGround(groundSurface)
+    groundSurface = drawLevel2(groundSurface)
     screen.blit(groundSurface, (x, y))
     playerSurface = player.drawChar(playerSurface)
     screen.blit(playerSurface, (0, 0))
