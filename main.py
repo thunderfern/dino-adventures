@@ -40,7 +40,7 @@ trashCollection = [trash1, trash1, trash1, trash1]
 
 #1 is start screen, 2 is trash collection screen
 curState = 2
-level = 2
+level = 1
 
 #curState 1
 
