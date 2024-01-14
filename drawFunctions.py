@@ -40,6 +40,8 @@ def drawLevel1(surface):
     surface.blit(grass2, (1800, 800 - (125 * 2)))
     # small vert
     surface.blit(grass3, (1800 + 125, 800 - 125))
+    # REMOVE LATER
+    surface.blit(grass2, (2500-125, 800 - 150))
     # large vertical ground
     surface.blit(grass4, (2500, 800 - 125))
     surface.blit(grass4, (2500, 800 - (125 * 2)))
