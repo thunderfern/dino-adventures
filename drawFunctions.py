@@ -27,6 +27,7 @@ grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), 
 
 def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))
+    # draw ground
     for i in range(0, 50):
         surface.blit(grass2, (i * 125, 800))
     for i in range(0,3):
@@ -42,7 +43,6 @@ def drawLevel1(surface):
     surface.blit(grass4, (2500, 800 - 125))
     surface.blit(grass4, (2500, 800 - (125 * 2)))
     surface.blit(grass1, (2500, 800 - (125 * 3)))
-
     # highground
     for i in range (0,5):
         surface.blit(grass5, (2500 + 125 + (i * 125), 800 - 125))
@@ -65,8 +65,15 @@ def drawLevel1(surface):
     surface.blit(grassFloat, (4000 + (125 * 5), 800 - (125 * 5)))
     surface.blit(grassFloat, (4000 + (125 * 8), 800 - (125 * 5)))
     surface.blit(grassFloat, (4000 + (125 * 11), 800 - (125 * 4)))
-    
+    # end level platform
+    for i in range (0,3):
+        surface.blit(grass5, (5500 + (i * 125), 800 - 125))
+        surface.blit(grass2, (5500 + (i * 125), 800 - (125 * 2)))
     return surface
 
 def drawLevel2(surface):
+    surface.fill((0, 0, 0, 0))
+    for i in range(0, 5):
+        surface.blit(grass2, (i * 125, 800))
+    surface.blit(grassFloat, (4000 + (125 * 3), 800 - (125 * 3)))
     return surface
