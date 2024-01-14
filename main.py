@@ -126,16 +126,31 @@ while run:
 
         locked = transform.scale(image.load("images/Locked.png"), (height / 5 * 2, height / 5 * 2)).convert_alpha()
         unlocked = transform.scale(image.load("images/Unlocked.png"), (height / 5 * 2, height / 5 * 2)).convert_alpha()
-        img1, img2, img3, img4 = locked, locked, locked, locked
+        img1 = locked
+        img2 = locked
+        img3 = locked
+        img4 = locked
+        #img1, img2, img3, img4 = locked, locked, locked, locked
         if trashCollection[0].collected:
-            img1 = unlocked
+            img1 = Surface((1000, 1000)).convert_alpha()
+            img1.fill((0, 0, 0, 0))
+            img1.blit(unlocked, (0, 0))
             img1.blit(bottle, (0, 0))
         if trashCollection[1].collected:
-            img2 = unlocked
+            img2 = Surface((1000, 1000)).convert_alpha()
+            img2.fill((0, 0, 0, 0))
+            img2.blit(unlocked, (0, 0))
+            img2.blit(bag, (0, 0))
         if trashCollection[2].collected:
-            img3 = unlocked
+            img3 = Surface((1000, 1000)).convert_alpha()
+            img3.fill((0, 0, 0, 0))
+            img3.blit(unlocked, (0, 0))
+            img3.blit(plastic, (0, 0))
         if trashCollection[3].collected:
-            img4 = unlocked
+            img4 = Surface((1000, 1000)).convert_alpha()
+            img4.fill((0, 0, 0, 0))
+            img4.blit(unlocked, (0, 0))
+            img4.blit(battery, (0, 0))
         screen.blit(img1, (width / 7, height / 12))
         screen.blit(img2, (width / 7 * 2 + height / 5 * 2, height / 12))
         screen.blit(img3, (width / 7, height / 12 * 2 + height / 5 * 2))
