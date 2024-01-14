@@ -13,6 +13,8 @@ trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((10000, 10000)).convert_alpha()
 playerSurface = Surface((width, height)).convert_alpha()
 levelTrashSurface = Surface((10000, 10000)).convert_alpha()
+obstacleSurface = Surface((10000, 10000)).convert_alpha()
+levelTrashSurface = drawTrash1(levelTrashSurface)
 
 xchange, ychange, x, y = 0, 0, 500, 0
 
@@ -75,8 +77,6 @@ while run:
     if playerTop.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
         ychange = 2
     
-   # x = max(0, x)
-    #y = max(0, y)
     #if curState == 1:
     #    pass
     if curState == 2:
@@ -90,19 +90,15 @@ while run:
     #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
     #screen.blit(trashCollectionSurface, (x, y))
     screen.fill("#000000")
-    groundSurface = drawLevel1(groundSurface)
+    #groundSurface = drawLevel1(groundSurface)
     screen.blit(groundSurface, (x, y))
     playerSurface = player.drawChar(playerSurface)
     screen.blit(playerSurface, (width / 2, height / 2))
     #screen.blit(playerright.mask.to_surface(), (width / 2, height / 2))
     #print(x, y)
-    levelTrashSurface = drawTrash1(levelTrashSurface)
+    #levelTrashSurface = drawTrash1(levelTrashSurface)
     screen.blit(levelTrashSurface, (x, y))
     player.updateState()
-    #player.updateMask(x, y)
-    #screen.blit(ground.mask.to_surface(), (0, 0))
-    #screen.blit(player.mask.to_surface(), (x, y))
-    #    pass
     display.flip()
     clock.tick(60)
 

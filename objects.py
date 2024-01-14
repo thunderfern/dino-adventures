@@ -58,6 +58,9 @@ class Background(sprite.Sprite):
 class Obstacle(sprite.Sprite):
     def __init__(self):
         super(Obstacle, self).__init__()
+        self.img = transform.scale(image.load("Spikes.png"), (125, 125))
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()
 
 class Trash(sprite.Sprite):
     def __init__(self, tmpimg):
