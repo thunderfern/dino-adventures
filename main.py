@@ -38,7 +38,7 @@ obstacleSurface = Surface((10000, 10000)).convert_alpha()
 xchange, ychange, x, y = 0, 0, 500, 0
 
 player = Player()
-trash1 = Trash(transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125)))
+trash1 = Trash(transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125)), (0, 0))
 playerRight = PlayerCollisions("images/player/Collide Right.png")
 playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
