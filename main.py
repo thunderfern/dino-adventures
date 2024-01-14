@@ -77,7 +77,7 @@ trash = TrashLayer(levelTrashSurface)
 '''
 levelreset = level
 levelrestart = level
-playbutton = Button("images/buttons/Play Button Normal State.png", "images/buttons/Play Button Hover State.png", 125)
+playbutton = Button("images/buttons/Play Button Normal State.png", "images/buttons/Play Button Hover State.png", 400)
 inventorybutton = Button("images/buttons/Inventory Normal.png", "images/buttons/Inventory Hover.png", 125)
 mouseblock = Mouse()
 treasure = Treasure()
@@ -117,12 +117,12 @@ while run:
     if curState == 1:
         mousex, mousey = mouse.get_pos()
         screen.blit(transform.scale(image.load("images/home page.png"), (width, width / 200 * 128)).convert_alpha(), (0, 0))
-        if playbutton.mask.overlap(mouseblock.mask, (width / 2 + 125 / 2 - mousex, height / 2 + 125 / 2 - mousey)):
-            screen.blit(playbutton.hoverimg, (width / 2 - 125 / 2, height / 2 - 125 / 2))
+        if playbutton.mask.overlap(mouseblock.mask, (-50 + mousex, height / 2 + 300 - mousey)):
+            screen.blit(playbutton.hoverimg, (50, height / 2 - 100))
             if mousebuttondown:
                 curState = 3
         else:
-            screen.blit(playbutton.img, (width / 2 - 125 / 2, height / 2 - 125 / 2))
+            screen.blit(playbutton.img, (50, height / 2 - 100))
 
     elif curState == 2:
         mousex, mousey = mouse.get_pos()
