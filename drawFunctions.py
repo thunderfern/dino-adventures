@@ -183,4 +183,6 @@ def drawObstacle2(surface):
     surface.blit(spike, (1600 + 125, 800 - (125 * 3)))
     surface.blit(spike, (2100 + 125, 800 - (125 * 2)))
     surface.blit(spike, (4300, 800 - (125 * 3)))
+    for i in range(0,40):
+        surface.blit(spike, (i * 125, 1125))
     return surface

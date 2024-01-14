@@ -23,7 +23,7 @@ level1Trash = [Trash(bottle, (500 + 125, 800 - (125 * 3.5))),
 level2Trash = [Trash(bag, (125 * 6, 800 - (125 * 2))), 
                Trash(battery, (1800, 800 - (125 * 4))), 
                Trash(bottle, (2475, 800 - (125 * 3))), 
-               Trash(plastic, (3100, 800 - (125 * 4))), 
+               Trash(plastic, (3100, 800 - (125 * 5))), 
                Trash(battery, (3700, 800 - (125 * 3))), 
                Trash(bag, (4300, 800 - (125 * 4)))]
 
@@ -50,7 +50,7 @@ trashCollection = [trash1, trash1, trash1, trash1]
 
 #1 is start screen, 2 is trash collection screen
 curState = 2
-level = 1
+level = 2
 
 #curState 1
 
