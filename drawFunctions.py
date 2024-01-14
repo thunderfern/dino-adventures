@@ -101,7 +101,7 @@ def drawLevel2(surface):
     surface.blit(grassFloat, (3200, 800 - (125 * 3)))
     surface.blit(grassFloat, (3700, 800 - 125))
     # last part
-    for i in range(0,5):
+    for i in range(0,8):
         surface.blit(grassFloat, (4050 + (i * 125), 800 - (125 * 2)))
     
     return surface
@@ -127,7 +127,6 @@ def drawTrash1(surface, level1Trash):
     if level1Trash[5].collected == False:
         surface.blit(level1Trash[5].img, (4000 + (125 * 10), 800 - (125 * 5)))
     return surface
-
 
 
 def drawTrash2(surface, level2Trash):
@@ -163,4 +162,5 @@ def drawObstacle2(surface):
     surface.blit(spike, (125 * 6, 800 - 125))
     surface.blit(spike, (1600 + 125, 800 - (125 * 3)))
     surface.blit(spike, (2100 + 125, 800 - (125 * 2)))
+    surface.blit(spike, (4300, 800 - (125 * 3)))
     return surface
