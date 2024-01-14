@@ -7,6 +7,7 @@ class Player(sprite.Sprite):
         self.player = 0
         self.state = 0
         self.orientation = 0
+        self.scaling = 0
         self.imagelist = ["images/player/Yellow Dino Standing.png", "images/player/Yellow Dino Walk.png", "images/player/Red Dino Standing.png", "images/player/Red Dino Walk.png", "images/player/Blue Dino Standing.png", "images/player/Blue Dino Walk.png"]
         self.processedImage = []
         for img in self.imagelist:
