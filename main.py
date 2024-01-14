@@ -49,7 +49,7 @@ trashes = []
 trashCollection = [trash1, trash1, trash1, trash1]
 
 #1 is start screen, 2 is trash collection screen
-curState = 1
+curState = 2
 level = 1
 
 #curState 1
@@ -73,41 +73,99 @@ else:
 ground = Ground(groundSurface)
 obstacle = Obstacle(obstacleSurface)
 trash = TrashLayer(levelTrashSurface)
-levelreset = level
-playbutton = Button()
-mouseblock = Mouse()
-mousebuttondown = False
-upkey = False
-rightkey = False
-downkey = False
-leftkey = False
+levelreset = 1
 while run:
-    mousebuttondown = False
-    upkey = False
-    rightkey = False
-    downkey = False
-    leftkey = False
-    for e in event.get():
-            if e.type == QUIT:
-                run = False
-            if e.type == KEYDOWN:
-                if e.key == K_ESCAPE:
-                    run = False
-                if e.key == K_UP or e.key == K_w:
-                    upkey = True
-            if e.type == MOUSEBUTTONDOWN:
-                mousebuttondown = True
-            
-    if curState == 1:
-        mousex, mousey = mouse.get_pos()
-        screen.fill("#000000")
-        if playbutton.mask.overlap(mouseblock.mask, (width / 2 + 125 / 2 - mousex, height / 2 + 125 / 2 - mousey)):
-            screen.blit(playbutton.hoverimg, (width / 2 - 125 / 2, height / 2 - 125 / 2))
-            if mousebuttondown:
-                curState = 3
-        else:
-            screen.blit(playbutton.img, (width / 2 - 125 / 2, height / 2 - 125 / 2))
+    justjumped = False
+    scaling = False
+    if levelreset == 1:
+        for t in level1Trash:
+            t.collected = False
+        groundSurface = drawLevel1(groundSurface)
+        obstacleSurface = drawObstacle1(obstacleSurface)
+        levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+        x = 500
+        y = 0
+        ychange = 0
+    elif levelreset == 2:
+        for t in level2Trash:
+            t.collected = False
+        groundSurface = drawLevel2(groundSurface)
+        obstacleSurface = drawObstacle2(obstacleSurface)
+        levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
+        x = 500
+        y = 0
+        ychange = 0
 
+    levelreset = 0
+    for e in event.get():
+        if e.type == QUIT:
+            run = False
+        if e.type == KEYDOWN:
+            if e.key == K_ESCAPE:
+                run = False
+            if e.key == K_SPACE:
+                y += 10
+            if e.key == K_1:
+                player.change(1)
+            if e.key == K_2:
+                player.change(2)
+            if e.key == K_3:
+                player.change(3)
+            if e.key == K_UP or e.key == K_w:
+                if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+                    ychange = -25
+                    justjumped = True
+                elif doublejump == False and player.player == 0:
+                    ychange = -25
+                    doublejump = True
+                    justjumped = True
+
+    curkeys = key.get_pressed()
+    player.setScaling(0)
+    
+    if curkeys[K_LEFT] or curkeys[K_a]:
+        if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
+            x += 10
+        else:
+            if player.player == 2:
+                if curkeys[K_UP] or curkeys[K_w]:
+                    player.setScaling(1)
+                    scaling = True
+                    y += 10
+        player.setOrientation(1)
+    if curkeys[K_RIGHT] or curkeys[K_d]:
+        if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
+            x -= 10
+        else:
+            if player.player == 2:
+                if curkeys[K_UP] or curkeys[K_w]:
+                    player.setScaling(2)
+                    scaling = True
+                    y += 10
+        player.setOrientation(0)
+    #if curkeys[K_UP]:
+        #if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+            #ychange -= 25
+    if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) and justjumped == False:
+        while playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+            y += 1
+        ychange = 0
+        doublejump = False
+        y -= 1
+    elif scaling:
+        ychange = 0
+    else:
+        ychange += 2
+    y -= ychange
+
+    if playerTop.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+        ychange = 2
+    
+    if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
+        levelreset = level
+    
+    #if curState == 1:
+    #    pass
     if curState == 2:
         for e in event.get():
             if e.type == MOUSEBUTTONDOWN:
@@ -116,124 +174,42 @@ while run:
         tmp = []
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
-    if curState == 3:
-        justjumped = False
-        scaling = False
-        if levelreset == 1:
-            for t in level1Trash:
-                t.collected = False
-            groundSurface = drawLevel1(groundSurface)
-            obstacleSurface = drawObstacle1(obstacleSurface)
-            levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
-            x = 500
-            y = 0
-            ychange = 0
-        elif levelreset == 2:
-            for t in level2Trash:
-                t.collected = False
-            groundSurface = drawLevel2(groundSurface)
-            obstacleSurface = drawObstacle2(obstacleSurface)
-            levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
-            x = 500
-            y = 0
-            ychange = 0
+    
+    screen.fill("#000000")
 
-        levelreset = 0
+    #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
+    #screen.blit(trashCollectionSurface, (x, y))
+    
+    #groundSurface = drawLevel1(groundSurface)
+    
+    screen.blit(groundSurface, (x, y))
+    playerSurface = player.drawChar(playerSurface)
+    screen.blit(playerSurface, (width / 2, height / 2))
+    #
+    #print(x, y)
+    #levelTrashSurface = drawTrash1(levelTrashSurface)
+    
+    #screen.blit(levelTrashSurface, (x, y))
+    screen.blit(obstacleSurface, (x, y))
+    player.updateState()
+    if level == 1:
+        for i in range(0, len(level1Trash)):
+            #screen.blit(level1Trash[i].mask.to_surface(), (x + level1Trash[i].x, y + level1Trash[i].y))
+            if level1Trash[i].collected:
+                continue
+            if (player.mask.overlap(level1Trash[i].mask, (x + level1Trash[i].x - width / 2, y + level1Trash[i].y - height / 2))):
+                level1Trash[i].collected = True
+                levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+    else:
+        for i in range(0, len(level2Trash)):
+            #screen.blit(level1Trash[i].mask.to_surface(), (x + level1Trash[i].x, y + level1Trash[i].y))
+            if level2Trash[i].collected:
+                continue
+            if (player.mask.overlap(level2Trash[i].mask, (x + level2Trash[i].x - width / 2, y + level2Trash[i].y - height / 2))):
+                level2Trash[i].collected = True
+                levelTrashSurface = drawTrash1(levelTrashSurface, level2Trash)
 
-        curkeys = key.get_pressed()
-        player.setScaling(0)
-
-        if curkeys[K_SPACE]:
-            y += 10
-        if curkeys[K_1]:
-            player.change(1)
-        if curkeys[K_2]:
-            player.change(2)
-        if curkeys[K_3]:
-            player.change(3)
-        if upkey:
-            if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
-                ychange = -25
-                justjumped = True
-            elif doublejump == False and player.player == 0:
-                ychange = -25
-                doublejump = True
-                justjumped = True
-        
-        if curkeys[K_LEFT] or curkeys[K_a]:
-            if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
-                x += 10
-            else:
-                if player.player == 2:
-                    if curkeys[K_UP] or curkeys[K_w]:
-                        player.setScaling(1)
-                        scaling = True
-                        y += 10
-            player.setOrientation(1)
-        if curkeys[K_RIGHT] or curkeys[K_d]:
-            if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
-                x -= 10
-            else:
-                if player.player == 2:
-                    if curkeys[K_UP] or curkeys[K_w]:
-                        player.setScaling(2)
-                        scaling = True
-                        y += 10
-            player.setOrientation(0)
-        
-        if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) and justjumped == False:
-            while playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
-                y += 1
-            ychange = 0
-            doublejump = False
-            y -= 1
-        elif scaling:
-            ychange = 0
-        else:
-            ychange += 2
-        y -= ychange
-
-        if playerTop.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
-            ychange = 2
-        
-        if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
-            levelreset = level
-        
-        screen.fill("#000000")
-
-        #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
-        #screen.blit(trashCollectionSurface, (x, y))
-        
-        #groundSurface = drawLevel1(groundSurface)
-        
-        screen.blit(groundSurface, (x, y))
-        playerSurface = player.drawChar(playerSurface)
-        screen.blit(playerSurface, (width / 2, height / 2))
-        #
-        #print(x, y)
-        #levelTrashSurface = drawTrash1(levelTrashSurface)
-        
-        #screen.blit(levelTrashSurface, (x, y))
-        screen.blit(obstacleSurface, (x, y))
-        player.updateState()
-        if level == 1:
-            for i in range(0, len(level1Trash)):
-                #screen.blit(level1Trash[i].mask.to_surface(), (x + level1Trash[i].x, y + level1Trash[i].y))
-                if level1Trash[i].collected:
-                    continue
-                if (player.mask.overlap(level1Trash[i].mask, (x + level1Trash[i].x - width / 2, y + level1Trash[i].y - height / 2))):
-                    level1Trash[i].collected = True
-                    levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
-        else:
-            for i in range(0, len(level2Trash)):
-                #screen.blit(level1Trash[i].mask.to_surface(), (x + level1Trash[i].x, y + level1Trash[i].y))
-                if level2Trash[i].collected:
-                    continue
-                if (player.mask.overlap(level2Trash[i].mask, (x + level2Trash[i].x - width / 2, y + level2Trash[i].y - height / 2))):
-                    level2Trash[i].collected = True
-                    levelTrashSurface = drawTrash1(levelTrashSurface, level2Trash)
-
-        screen.blit(levelTrashSurface, (x, y))
+    screen.blit(levelTrashSurface, (x, y))
     display.flip()
     clock.tick(60)
 
