@@ -257,7 +257,9 @@ while run:
         
         #screen.blit(levelTrashSurface, (x, y))
         screen.blit(obstacleSurface, (x, y))
-        if curkeys[K_LEFT] or curkeys[K_RIGHT] or curkeys[K_UP] or curkeys[K_w] or curkeys[K_a] or curkeys[K_d] or xchange != 0 or ychange != 0:
+        if ychange != 0:
+            player.state = 0
+        elif curkeys[K_LEFT] or curkeys[K_RIGHT] or curkeys[K_UP] or curkeys[K_w] or curkeys[K_a] or curkeys[K_d] or xchange != 0:
             player.updateState()
         else:
             player.state = 8
