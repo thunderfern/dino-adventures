@@ -36,6 +36,10 @@ whale = transform.scale(image.load("images/Whale Body (Ground).png"), (2000, 200
 
 def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))
+    # draw wall barrier
+    for i in range (0, 6):
+        surface.blit(grass5, (0, 800 - (125 * i)))
+    surface.blit(grass2, (0, 800 - (125 * 6)))
     # draw ground
     for i in range(0, 50):
         surface.blit(grass2, (i * 125, 800))
@@ -175,6 +179,7 @@ def drawTrash2(surface, level2Trash):
 spike = transform.scale(image.load("images/Spikes.png"), (125, 125))
 def drawObstacle1(surface):
     surface.fill((0, 0, 0, 0))
+    surface.blit(spike, (0, 800 - (125 * 7)))
     surface.blit(spike, (1800 - 125, 800 - 125))
     surface.blit(spike, (2700, 800 - (125 * 4)))
     surface.blit(spike, (2500 + (125 * 5), 800 - (125 * 6)))
