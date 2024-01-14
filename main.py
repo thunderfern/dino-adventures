@@ -13,12 +13,15 @@ trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((10000, 10000)).convert_alpha()
 playerSurface = Surface((width, height)).convert_alpha()
 
-xchange, ychange, x, y = 0, 0, 0, 0
+xchange, ychange, x, y = 0, 0, 500, 0
 
 player = Player()
 trash1 = Trash()
-playerright = PlayerCollisions()
-groundSurface = drawLevel2(groundSurface)
+playerRight = PlayerCollisions("images/player/Collide Right.png")
+playerLeft = PlayerCollisions("images/player/Collide Left.png")
+playerTop = PlayerCollisions("images/player/Collide Top.png")
+playerBot = PlayerCollisions("images/player/Collide Bot.png")
+groundSurface = drawLevel1(groundSurface)
 ground = Ground(groundSurface)
 
 waters = []
@@ -51,33 +54,28 @@ while run:
             if e.key == K_3:
                 player.change(3)
     curkeys = key.get_pressed()
+    
     if curkeys[K_LEFT]:
-        x += 10
+        if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
+            x += 10
     if curkeys[K_RIGHT]:
-        if playerright.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
-            pass
-        else:
+        if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x -= 10
+    if curkeys[K_UP]:
+        if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+            ychange -= 25
+    y -= ychange
+    if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+        ychange = 0
+    else:
+        ychange += 2
+    if playerTop.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+        ychange = 2
+    
    # x = max(0, x)
     #y = max(0, y)
-    tmp1, tmp2 = 0, 0
-    #if it does collide
-    if player.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
-        #tmp1, tmp2 = player.mask.overlap(ground.mask, (x, y))
-        #print(tmp1, tmp2)
-        #print(ground.mask.get_size())
-        #print(player.mask.get_size())
-        
-        if curkeys[K_UP]:
-            ychange -= 5
-        else:
-            ychange = 0
-        #print(tmp1, tmp2)
-    else:
-        ychange += 1
     #if curState == 1:
     #    pass
-    y -= ychange
     if curState == 2:
         for e in event.get():
             if e.type == MOUSEBUTTONDOWN:
@@ -89,7 +87,7 @@ while run:
     #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
     #screen.blit(trashCollectionSurface, (x, y))
     screen.fill("#000000")
-    groundSurface = drawLevel2(groundSurface)
+    groundSurface = drawLevel1(groundSurface)
     screen.blit(groundSurface, (x, y))
     playerSurface = player.drawChar(playerSurface)
     screen.blit(playerSurface, (width / 2, height / 2))
@@ -100,7 +98,6 @@ while run:
     #screen.blit(ground.mask.to_surface(), (0, 0))
     #screen.blit(player.mask.to_surface(), (x, y))
     #    pass
-    draw.rect(screen, "#FF0000", Rect(tmp1, tmp2, 10, 10))
     display.flip()
     clock.tick(60)
 

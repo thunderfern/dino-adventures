@@ -39,9 +39,9 @@ class Player(sprite.Sprite):
         self.state %= 16
 
 class PlayerCollisions(sprite.Sprite):
-    def __init__(self):
+    def __init__(self, tmpimg):
         super(PlayerCollisions, self).__init__()
-        self.img = transform.scale(image.load("images/player/Collide Right.png"), (125, 125))
+        self.img = transform.scale(image.load(tmpimg), (125, 125))
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
 
