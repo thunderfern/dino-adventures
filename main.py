@@ -57,7 +57,7 @@ if level == 1:
     levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
 else:
     groundSurface = drawLevel2(groundSurface)
-    obstacleSurface = drawObstacle1(obstacleSurface)
+    obstacleSurface = drawObstacle2(obstacleSurface)
     levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
 ground = Ground(groundSurface)
 obstacle = Obstacle(obstacleSurface)
