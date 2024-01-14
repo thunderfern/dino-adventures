@@ -50,7 +50,7 @@ trashCollection = [trash1, trash1, trash1, trash1]
 
 #1 is start screen, 2 is trash collection screen
 curState = 2
-level = 2
+level = 1
 
 #curState 1
 
@@ -61,6 +61,7 @@ trashState = 0
 run = True
 doublejump = False
 justjumped = False
+scaling = False
 if level == 1:
     groundSurface = drawLevel1(groundSurface)
     obstacleSurface = drawObstacle1(obstacleSurface)
@@ -74,6 +75,7 @@ obstacle = Obstacle(obstacleSurface)
 trash = TrashLayer(levelTrashSurface)
 while run:
     justjumped = False
+    scaling = False
     for e in event.get():
         if e.type == QUIT:
             run = False
@@ -98,14 +100,27 @@ while run:
                     justjumped = True
 
     curkeys = key.get_pressed()
+    player.setScaling(0)
     
     if curkeys[K_LEFT] or curkeys[K_a]:
         if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x += 10
+        else:
+            if player.player == 2:
+                if curkeys[K_UP] or curkeys[K_w]:
+                    player.setScaling(1)
+                    scaling = True
+                    y += 10
         player.setOrientation(1)
     if curkeys[K_RIGHT] or curkeys[K_d]:
         if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x -= 10
+        else:
+            if player.player == 2:
+                if curkeys[K_UP] or curkeys[K_w]:
+                    player.setScaling(2)
+                    scaling = True
+                    y += 10
         player.setOrientation(0)
     #if curkeys[K_UP]:
         #if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
@@ -116,6 +131,8 @@ while run:
         ychange = 0
         doublejump = False
         y -= 1
+    elif scaling:
+        ychange = 0
     else:
         ychange += 2
     y -= ychange

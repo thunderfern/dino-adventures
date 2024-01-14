@@ -20,10 +20,14 @@ class Player(sprite.Sprite):
         walk = 0
         if self.state < 8:
             walk = 1
+        output = self.processedImage[self.player * 2 + walk]
         if self.orientation:
-            surface.blit(transform.flip(self.processedImage[self.player * 2 + walk], True, False), (0, 0))
-        else:
-            surface.blit(self.processedImage[self.player * 2 + walk], (0, 0))
+            output = transform.flip(output, True, False)
+        if self.scaling == 1:
+            output = transform.rotate(output, 270)
+        if self.scaling == 2:
+            output = transform.rotate(output, 90)
+        surface.blit(output, (0, 0))
         return surface
     
     def updateState(self):
@@ -36,6 +40,8 @@ class Player(sprite.Sprite):
     def change(self, num):
         self.player = num - 1
 
+    def setScaling(self, num):
+        self.scaling = num
 
 class PlayerCollisions(sprite.Sprite):
     def __init__(self, tmpimg):
