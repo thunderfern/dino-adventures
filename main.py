@@ -17,7 +17,7 @@ battery = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
 level1Trash = [Trash(bottle, (500 + 125, 800 - (125 * 3.5))), 
                Trash(bag, (1800, 800 - (125 * 3))), 
                Trash(bottle, (2700, 800 - (125 * 5))), 
-               Trash(plastic, (2500 + (125 * 7.5), 800 - (125 * 6))), 
+               Trash(plastic, (2500 + (125 * 6.5), 800 - (125 * 4))), 
                Trash(battery, (4000 + (125 * 2), 800 - (125 * 6))), 
                Trash(bag, (4000 + (125 * 10), 800 - (125 * 5)))]
 level2Trash = [Trash(bag, (125 * 6, 800 - (125 * 2))), 

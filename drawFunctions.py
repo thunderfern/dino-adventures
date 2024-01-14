@@ -49,7 +49,9 @@ def drawLevel1(surface):
         surface.blit(grass5, (2500 + 125 + (i * 125), 800 - 125))
         surface.blit(grass5, (2500 + 125 + (i * 125), 800 - (125 * 2)))
         surface.blit(grass2, (2500 + 125 + (i * 125), 800 - (125 * 3)))
-    # high floating blocks
+    # high floating blocks (headbump)
+    surface.blit(grassFloat, (2500 + (125 * 5), 800 - (125 * 5)))
+    surface.blit(grassFloat, (2500 + (125 * 6), 800 - (125 * 5)))
     surface.blit(grassFloat, (2500 + (125 * 7), 800 - (125 * 5)))
     surface.blit(grassFloat, (2500 + (125 * 8), 800 - (125 * 5)))
     # slightly high ground
@@ -61,9 +63,10 @@ def drawLevel1(surface):
     surface.blit(grass5, (2500 + (125 * 8), 800 - 125))
     surface.blit(grass5, (2500 + (125 * 8), 800 - (125 * 2)))
     surface.blit(grass2, (2500 + (125 * 8), 800 - (125 * 3)))
-    # end of  high ground
-    surface.blit(grass5, (2500 + (125 * 9), 800 - 125))
-    surface.blit(grass3, (2500 + (125 * 9), 800 - (125 * 2)))
+    # end of high ground
+    surface.blit(grass6, (2500 + (125 * 9), 800 - 125))
+    surface.blit(grass5, (2500 + (125 * 9), 800 - (125 * 2)))
+    surface.blit(grass3, (2500 + (125 * 9), 800 - (125 * 3)))
     # step
     surface.blit(grass3, (3750, 800 - 125))
     # headbump
@@ -162,7 +165,12 @@ def drawObstacle1(surface):
     surface.fill((0, 0, 0, 0))
     surface.blit(spike, (1800 - 125, 800 - 125))
     surface.blit(spike, (2700, 800 - (125 * 4)))
+    surface.blit(spike, (2500 + (125 * 5), 800 - (125 * 6)))
+    surface.blit(spike, (2500 + (125 * 6), 800 - (125 * 6)))
+    surface.blit(spike, (2500 + (125 * 7), 800 - (125 * 6)))
+    surface.blit(spike, (2500 + (125 * 8), 800 - (125 * 6)))
     surface.blit(spike, ((2500 + (125 * 6), 800 - (125 * 3))))
+    surface.blit(spike, ((2500 + (125 * 7), 800 - (125 * 3))))
     surface.blit(spike, (4000, 800 - (125 * 7)))
     surface.blit(spike, (4000 + 125, 800 - (125 * 7)))
     for i in range(0, 6):
