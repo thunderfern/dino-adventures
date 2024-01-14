@@ -17,7 +17,8 @@ xchange, ychange, x, y = 0, 0, 0, 0
 
 player = Player()
 trash1 = Trash()
-groundSurface = drawLevel2(groundSurface)
+playerright = PlayerCollisions()
+groundSurface = drawLevel1(groundSurface)
 ground = Ground(groundSurface)
 
 waters = []
@@ -53,24 +54,27 @@ while run:
     if curkeys[K_LEFT]:
         x += 5
     if curkeys[K_RIGHT]:
-        x -= 5
-    if curkeys[K_UP]:
-        y -= 5
-    if curkeys[K_DOWN]:
-        y -= 5
+        if playerright.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+            pass
+        else:
+            x -= 5
    # x = max(0, x)
     #y = max(0, y)
     tmp1, tmp2 = 0, 0
-    if player.mask.overlap(ground.mask, (x, y)):
-        tmp1, tmp2 = player.mask.overlap(ground.mask, (x, y))
+    #if it does collide
+    if player.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
+        #tmp1, tmp2 = player.mask.overlap(ground.mask, (x, y))
         #print(tmp1, tmp2)
         #print(ground.mask.get_size())
         #print(player.mask.get_size())
-        ychange = 0
-        print(tmp1, tmp2)
+        
+        if curkeys[K_UP]:
+            ychange -= 5
+        else:
+            ychange = 0
+        #print(tmp1, tmp2)
     else:
         ychange += 1
-        #print("ok")
     #if curState == 1:
     #    pass
     y -= ychange
@@ -84,11 +88,12 @@ while run:
             tmp.append(trashCollection[trashState * 4 + i])
     #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
     #screen.blit(trashCollectionSurface, (x, y))
-
-    groundSurface = drawLevel2(groundSurface)
+    screen.fill("#000000")
+    groundSurface = drawLevel1(groundSurface)
     screen.blit(groundSurface, (x, y))
     playerSurface = player.drawChar(playerSurface)
-    screen.blit(playerSurface, (0, 0))
+    screen.blit(playerSurface, (width / 2, height / 2))
+    #screen.blit(playerright.mask.to_surface(), (width / 2, height / 2))
     #print(x, y)
     player.updateState()
     #player.updateMask(x, y)
