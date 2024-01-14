@@ -73,9 +73,30 @@ else:
 ground = Ground(groundSurface)
 obstacle = Obstacle(obstacleSurface)
 trash = TrashLayer(levelTrashSurface)
+levelreset = 1
 while run:
     justjumped = False
     scaling = False
+    if levelreset == 1:
+        for t in level1Trash:
+            t.collected = False
+        groundSurface = drawLevel1(groundSurface)
+        obstacleSurface = drawObstacle1(obstacleSurface)
+        levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+        x = 500
+        y = 0
+        ychange = 0
+    elif levelreset == 2:
+        for t in level2Trash:
+            t.collected = False
+        groundSurface = drawLevel2(groundSurface)
+        obstacleSurface = drawObstacle2(obstacleSurface)
+        levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
+        x = 500
+        y = 0
+        ychange = 0
+
+    levelreset = 0
     for e in event.get():
         if e.type == QUIT:
             run = False
@@ -142,6 +163,7 @@ while run:
     
     if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
         print("ur sooo dead")
+        levelreset = level
     for i in range(0, len(level1Trash)):
         if (player.mask.overlap(level1Trash[i].mask, (x - width / 2, y - height / 2))):
             print("mm")
