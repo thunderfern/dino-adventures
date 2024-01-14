@@ -114,7 +114,10 @@ batter = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
 
 def drawTrash1(surface, level1Trash):
     surface.fill((0, 0, 0, 0))
-    if level1Trash[0].collected == False:
+    for t in level1Trash:
+        if t.collected == False:
+            surface.blit(t.img, (t.x, t.y))
+    '''if level1Trash[0].collected == False:
         surface.blit(level1Trash[0].img, (500 + 125, 800 - (125 * 3.5)))
     if level1Trash[1].collected == False:
         surface.blit(level1Trash[1].img, (1800, 800 - (125 * 3)))
@@ -125,7 +128,7 @@ def drawTrash1(surface, level1Trash):
     if level1Trash[4].collected == False:
         surface.blit(level1Trash[4].img, (4000 + (125 * 2), 800 - (125 * 6)))
     if level1Trash[5].collected == False:
-        surface.blit(level1Trash[5].img, (4000 + (125 * 10), 800 - (125 * 5)))
+        surface.blit(level1Trash[5].img, (4000 + (125 * 10), 800 - (125 * 5)))'''
     return surface
 
 
