@@ -44,6 +44,10 @@ class PlayerCollisions(sprite.Sprite):
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
 
+class Background(sprite.Sprite):
+    def __init__(self):
+        super(Background, self).__init__()
+
 class Ground(sprite.Sprite):
     def __init__(self, img):
         super(Ground, self).__init__()
@@ -51,14 +55,10 @@ class Ground(sprite.Sprite):
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
 
-class Background(sprite.Sprite):
-    def __init__(self):
-        super(Background, self).__init__()
-
 class Obstacle(sprite.Sprite):
-    def __init__(self):
+    def __init__(self, img):
         super(Obstacle, self).__init__()
-        self.img = transform.scale(image.load("Spikes.png"), (125, 125))
+        self.img = img
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
 

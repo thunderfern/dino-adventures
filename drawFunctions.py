@@ -139,3 +139,11 @@ def drawTrash2(surface):
         surface.blit(level2Trash[4].img, (3700, 800 - (125 * 3)))
     if level2Trash[5].collected == False:
         surface.blit(level2Trash[5].img, (4300, 800 - (125 * 4)))
+
+#loading the spikes
+        
+spike = transform.scale(image.load("images/Spikes.png"), (125, 125))
+def drawObstacle1(surface):
+    surface.fill((0, 0, 0, 0))
+    surface.blit(spike, (1300, 800 - 200))
+    return surface

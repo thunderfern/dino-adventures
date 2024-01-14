@@ -11,6 +11,7 @@ clock = time.Clock()
 #initializing the surfaces
 trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((10000, 10000)).convert_alpha()
+obstacleSurface = Surface((10000, 10000)).convert_alpha()
 playerSurface = Surface((width, height)).convert_alpha()
 levelTrashSurface = Surface((10000, 10000)).convert_alpha()
 obstacleSurface = Surface((10000, 10000)).convert_alpha()
@@ -25,7 +26,9 @@ playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
 playerBot = PlayerCollisions("images/player/Collide Bot.png")
 groundSurface = drawLevel1(groundSurface)
+obstacleSurface = drawObstacle1(obstacleSurface)
 ground = Ground(groundSurface)
+obstacle = Obstacle(obstacleSurface)
 
 waters = []
 trashes = []
@@ -96,6 +99,8 @@ while run:
     if playerTop.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
         ychange = 2
     
+    if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
+        print("ur sooo dead")
     #if curState == 1:
     #    pass
     if curState == 2:
@@ -117,6 +122,7 @@ while run:
     #print(x, y)
     #levelTrashSurface = drawTrash1(levelTrashSurface)
     screen.blit(levelTrashSurface, (x, y))
+    screen.blit(obstacleSurface, (x, y))
     player.updateState()
     display.flip()
     clock.tick(60)
