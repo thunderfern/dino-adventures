@@ -133,7 +133,7 @@ def drawTrash1(surface, level1Trash):
 def drawTrash2(surface, level2Trash):
     surface.fill((0, 0, 0, 0))
     if level2Trash[0].collected == False:
-        surface.blit(level2Trash[0].img, (125 * 2.5, 800 - (125 * 2)))
+        surface.blit(level2Trash[0].img, (125 * 6, 800 - (125 * 2)))
     if level2Trash[1].collected == False:
         surface.blit(level2Trash[1].img, (1800, 800 - (125 * 4)))
     if level2Trash[2].collected == False:
@@ -160,5 +160,7 @@ def drawObstacle1(surface):
 
 def drawObstacle2(surface):
     surface.fill((0, 0, 0, 0))
-    surface.blit(spike, (1800 - 125, 800 - 125))
+    surface.blit(spike, (125 * 6, 800 - 125))
+    surface.blit(spike, (1600 + 125, 800 - (125 * 3)))
+    surface.blit(spike, (2100 + 125, 800 - (125 * 2)))
     return surface
