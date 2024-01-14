@@ -62,8 +62,9 @@ class Obstacle(sprite.Sprite):
         self.rect = self.mask.get_rect()
 
 class Trash(sprite.Sprite):
-    def __init__(self, tmpimg):
+    def __init__(self, tmpimg, pos):
         super(Trash, self).__init__()
+        self.x, self.y = pos
         self.collected = False
         self.img = tmpimg
         self.mask = mask.from_surface(self.img)
