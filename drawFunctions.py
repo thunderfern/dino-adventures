@@ -281,7 +281,7 @@ def drawText(screen, trashCollection, my_font, width, height):
         img4.blit(battery, (0, 0))
         img4.blit(bag, (0, 0))
         img4.blit(textBatter, (80, 70))
-        img4.blit(textBatter1, (8, 120))
+        img4.blit(textBatter1, (80, 120))
         img4.blit(textBatter2, (80, 170))
         img4.blit(textBatter3, (80, 220))
         img4.blit(textBatter4, (80, 270))
