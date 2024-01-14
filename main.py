@@ -58,9 +58,11 @@ while run:
     if curkeys[K_LEFT]:
         if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x += 10
+        player.setOrientation(1)
     if curkeys[K_RIGHT]:
         if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x -= 10
+        player.setOrientation(0)
     if curkeys[K_UP]:
         if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
             ychange -= 25
