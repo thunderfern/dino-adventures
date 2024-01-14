@@ -82,7 +82,6 @@ inventorybutton = Button("images/buttons/Inventory Normal.png", "images/buttons/
 mouseblock = Mouse()
 treasure = Treasure()
 backgroundsurf = Surface((10000, 10000)).convert_alpha()
-backgroundsurf.blit(transform.scale(image.load("images/Placeholder BG.png"), (19200 / 2, 10800 / 2)), (0, 0))
 #1920, 1080
 mousebuttondown = False
 mousebuttonup = True
@@ -152,6 +151,9 @@ while run:
             levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
             treasureSurface.fill((0, 0, 0, 0))
             treasureSurface.blit(treasure.img, (7450, 1050))
+            backgroundsurf.fill((0, 0, 0, 0))
+            backgroundsurf.blit(transform.scale(image.load("images/Placeholder BG.png"), (19200 / 2, 10800 / 2)), (0, 0))
+            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG).png"), (2000, 2000)), (5500 + 125 + 500, 800 - (125 * 10) + 3500))
             x = 500
             y = 0
             ychange = 0
@@ -169,6 +171,8 @@ while run:
             groundSurface = drawLevel2(groundSurface)
             obstacleSurface = drawObstacle2(obstacleSurface)
             levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
+            backgroundsurf.fill((0, 0, 0, 0))
+            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG).png"), (19200 / 2, 10800 / 2)), (0, 0))
             x = 500
             y = 0
             ychange = 0
