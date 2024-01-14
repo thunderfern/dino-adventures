@@ -28,6 +28,9 @@ grassFloatR = transform.scale(image.load("images/blocks/grass block float right.
 grassFloatM = transform.scale(image.load("images/blocks/grass block float middle.png"), (125, 125))
 grassFloatL = transform.scale(image.load("images/blocks/grass block float left.png"), (125, 125))
 fleshFloat = transform.scale(image.load("images/blocks/flesh block float.png"), (125, 125))
+fleshFloatR = transform.scale(image.load("images/blocks/flesh block float right.png"), (125, 125))
+fleshFloatM = transform.scale(image.load("images/blocks/flesh block float middle.png"), (125, 125))
+fleshFloatL = transform.scale(image.load("images/blocks/flesh block float left.png"), (125, 125))
 
 def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))
@@ -101,23 +104,25 @@ def drawLevel2(surface):
     for i in range(0, 10):
         surface.blit(grass2, (i * 125, 800))
     # stepping off piece
-    surface.blit(grassFloat, (1250, 800-125))
+    surface.blit(fleshFloat, (1250, 800-125))
     # two-long floating
-    surface.blit(grassFloatL, (1600, 800 - (125 * 2)))
-    surface.blit(grassFloatR, (1600 + 125, 800 - (125 * 2)))
+    surface.blit(fleshFloatL, (1600, 800 - (125 * 2)))
+    surface.blit(fleshFloatR, (1600 + 125, 800 - (125 * 2)))
     # two-long floating lower
-    surface.blit(grassFloatL, (2100, 800 - 125))
-    surface.blit(grassFloatR, (2100 + 125, 800 - 125))
+    surface.blit(fleshFloatL, (2100, 800 - 125))
+    surface.blit(fleshFloatR, (2100 + 125, 800 - 125))
     # vertical wall
-    surface.blit(grass2, (2600, 800 - (125 * 3)))
-    surface.blit(grass8, (2600, 800 - (125 * 2)))
+    surface.blit(fleshFloat, (2600, 800 - (125 * 2.75)))
+    surface.blit(fleshFloat, (2600, 800 - (125 * 2)))
     # small floats
-    surface.blit(grassFloat, (2900, 800 - (125 * 2)))
-    surface.blit(grassFloat, (3200, 800 - (125 * 3)))
-    surface.blit(grassFloat, (3700, 800 - 125))
+    surface.blit(fleshFloat, (2900, 800 - (125 * 2)))
+    surface.blit(fleshFloat, (3200, 800 - (125 * 3)))
+    surface.blit(fleshFloat, (3700, 800 - 125))
     # last part
-    for i in range(0,8):
-        surface.blit(grassFloat, (4050 + (i * 125), 800 - (125 * 2)))
+    surface.blit(fleshFloatL, (4050, 800 - (125 * 2)))
+    for i in range(1,7):
+        surface.blit(fleshFloatM, (4050 + (i * 125), 800 - (125 * 2)))
+    surface.blit(fleshFloatR, (4050 + (7 * 125), 800 - (125 * 2)))
     
     return surface
 
