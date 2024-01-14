@@ -93,3 +93,21 @@ class TrashLayer(sprite.Sprite):
 class Water(sprite.Sprite):
     def __init__(self):
         super(Water, self).__init__()
+
+class Button(sprite.Sprite):
+    def __init__(self):
+        super(Button, self).__init__()
+        self.img = transform.scale(image.load("images/buttons/Play Button Normal State.png"), (125, 125)).convert_alpha()
+        self.hoverimg = transform.scale(image.load("images/buttons/Play Button Hover State.png"), (125, 125)).convert_alpha()
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()
+
+class Mouse(sprite.Sprite):
+    def __init__(self):
+        super(Mouse, self).__init__()
+        self.surf = Surface((10, 10)).convert_alpha()
+        self.surf.fill((0, 0, 0, 0))
+        draw.rect(self.surf, "#FFFFFF", Rect(0, 0, 10, 10))
+        self.mask = mask.from_surface(self.surf)
+        self.rect = self.mask.get_rect()
+        
