@@ -12,14 +12,13 @@ class Player(sprite.Sprite):
         for img in self.imagelist:
             self.processedImage.append(transform.scale(image.load(img), (125, 125)))
         self.mask = mask.from_surface(self.processedImage[0])
-        self.rect = self.mask.get_rect(center = (100, 100))
+        self.rect = self.mask.get_rect()
 
     def drawChar(self, surface):
         surface.fill((0, 0, 0, 0))
         walk = 0
         if self.state < 8:
             walk = 1
-        #self.mask = mask.from_surface(self.processedImage[self.player * 2 + walk])
         if self.orientation:
             surface.blit(transform.flip(self.processedImage[self.player * 2 + walk], True, False), (0, 0))
         else:
