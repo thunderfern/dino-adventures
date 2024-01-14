@@ -31,6 +31,7 @@ fleshFloat = transform.scale(image.load("images/blocks/flesh block float.png"), 
 fleshFloatR = transform.scale(image.load("images/blocks/flesh block float right.png"), (125, 125))
 fleshFloatM = transform.scale(image.load("images/blocks/flesh block float middle.png"), (125, 125))
 fleshFloatL = transform.scale(image.load("images/blocks/flesh block float left.png"), (125, 125))
+whale = transform.scale(image.load("images/Whale Body (Ground).png"), (125, 125))
 
 def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))

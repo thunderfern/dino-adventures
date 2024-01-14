@@ -150,7 +150,7 @@ while run:
         #if curkeys[K_SPACE]:
             #y += 10
         
-        if spacekey and player.player == 1:
+        if spacekey and player.player == 1 and xchange == 0:
             if player.orientation == 1:
                 xchange = 25
             else:
@@ -186,7 +186,7 @@ while run:
                         scaling = True
                         y += 10
             player.setOrientation(1)
-        if curkeys[K_RIGHT] or curkeys[K_d]:
+        elif curkeys[K_RIGHT] or curkeys[K_d]:
             if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
                 x -= 10
                 x += xchange
@@ -197,6 +197,15 @@ while run:
                         scaling = True
                         y += 10
             player.setOrientation(0)
+        elif curkeys[K_SPACE]:
+            if player.orientation == 1:
+                if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
+                    x += 10
+                    x += xchange
+            else:
+                if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
+                    x -= 10
+                    x += xchange
         
         if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) and justjumped == False:
             while playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
