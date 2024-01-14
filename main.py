@@ -59,7 +59,7 @@ while run:
                 player.change(2)
             if e.key == K_3:
                 player.change(3)
-            if e.key == K_UP:
+            if e.key == K_UP or e.key == K_w:
                 if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
                     ychange = -25
                     justjumped = True
@@ -70,11 +70,11 @@ while run:
 
     curkeys = key.get_pressed()
     
-    if curkeys[K_LEFT]:
+    if curkeys[K_LEFT] or curkeys[K_a]:
         if playerLeft.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x += 10
         player.setOrientation(1)
-    if curkeys[K_RIGHT]:
+    if curkeys[K_RIGHT] or curkeys[K_d]:
         if playerRight.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) == None:
             x -= 10
         player.setOrientation(0)
