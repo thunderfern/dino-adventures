@@ -362,7 +362,7 @@ while run:
         screen.blit(youwin, (width / 4 + width / 52, height / 24))
     if curState == 5:
         screen.fill("#FFFFFF")
-        if mousebuttondown:
+        if mousebuttondown or spacekey:
             cutscene += 1
         if cutscene > 1:
             #150, 128
