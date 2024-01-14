@@ -73,7 +73,11 @@ def drawLevel1(surface):
 
 def drawLevel2(surface):
     surface.fill((0, 0, 0, 0))
-    for i in range(0, 5):
+    for i in range(0, 10):
         surface.blit(grass2, (i * 125, 800))
-    surface.blit(grassFloat, (4000 + (125 * 3), 800 - (125 * 3)))
+    surface.blit(grassFloat, (1350, 800 - (125 * 2)))
+    surface.blit(grassFloat, (1350 + 125, 800 - (125 * 2)))
+    surface.blit(grassFloat, (1700, 800 - 125))
+    surface.blit(grassFloat, (1700 + 125, 800 - 125))
+    
     return surface
