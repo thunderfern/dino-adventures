@@ -154,7 +154,7 @@ while run:
             treasureSurface.blit(treasure.img, (7450, 1050))
             backgroundsurf.fill((0, 0, 0, 0))
             backgroundsurf.blit(transform.scale(image.load("images/Placeholder BG.png"), (50000 / 5, 10800 / 5)), (-500, 3000))
-            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG).png"), (2000, 2000)), (5500 + 125 + 1000, 800 - (125 * 10) + 3500))
+            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth.png"), (3000, 1500)), (5500 + 125 + 1000, 800 - (125 * 10) + 3500 + 400))
             x = 500
             y = 0
             ychange = 0

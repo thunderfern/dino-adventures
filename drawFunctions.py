@@ -33,7 +33,7 @@ fleshFloat = transform.scale(image.load("images/blocks/flesh block float.png"), 
 fleshFloatR = transform.scale(image.load("images/blocks/flesh block float right.png"), (125, 125))
 fleshFloatM = transform.scale(image.load("images/blocks/flesh block float middle.png"), (125, 125))
 fleshFloatL = transform.scale(image.load("images/blocks/flesh block float left.png"), (125, 125))
-whale = transform.scale(image.load("images/Whale Body (Ground).png"), (2000, 2000))
+whale = transform.scale(image.load("images/Whale Body.png"), (3000, 1500))
 
 
 def drawLevel1(surface):
@@ -107,7 +107,7 @@ def drawLevel1(surface):
     for i in range (0,3):
         surface.blit(grass5, (5500 + (i * 125), 800 - 125))
         surface.blit(grass2, (5500 + (i * 125), 800 - (125 * 2)))
-    surface.blit(whale, (5500 + 125, 800 - (125 * 10)))
+    surface.blit(whale, (5500 + 125, 800 - (125 * 10) + 400))
     return surface
 
 def drawLevel2(surface):
