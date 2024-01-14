@@ -90,6 +90,7 @@ rightkey = False
 downkey = False
 leftkey = False
 spacekey = False
+cutscene = 0
 while run:
     mousebuttondown = False
     upkey = False
@@ -119,7 +120,7 @@ while run:
         if playbutton.mask.overlap(mouseblock.mask, (-50 + mousex, height / 2 + 300 - mousey)):
             screen.blit(playbutton.hoverimg, (50, height / 2 - 100))
             if mousebuttondown:
-                curState = 3
+                curState = 5
         else:
             screen.blit(playbutton.img, (50, height / 2 - 100))
 
@@ -153,7 +154,7 @@ while run:
             treasureSurface.blit(treasure.img, (7450, 1050))
             backgroundsurf.fill((0, 0, 0, 0))
             backgroundsurf.blit(transform.scale(image.load("images/Placeholder BG.png"), (19200 / 2, 10800 / 2)), (0, 0))
-            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG).png"), (2000, 2000)), (5500 + 125 + 500, 800 - (125 * 10) + 3500))
+            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG).png"), (2000, 2000)), (5500 + 125 + 1000, 800 - (125 * 10) + 3500))
             x = 500
             y = 0
             ychange = 0
@@ -171,8 +172,11 @@ while run:
             groundSurface = drawLevel2(groundSurface)
             obstacleSurface = drawObstacle2(obstacleSurface)
             levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
+            treasureSurface.fill((0, 0, 0, 0))
+            treasureSurface.blit(treasure.img, (5000, 400))
             backgroundsurf.fill((0, 0, 0, 0))
-            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG).png"), (19200 / 2, 10800 / 2)), (0, 0))
+            backgroundsurf.blit(transform.scale(image.load("images/Whale Mouth (BG) (1).png"), (19200 / 4 * 3, 10800 /  4 * 3)), (-2000, 500))
+            backgroundsurf.blit(transform.scale(image.load("images/Whale Body (Ground).png"), (19200 /  4 * 3, 10800 /  4 * 3)), (-2000, 500))
             x = 500
             y = 0
             ychange = 0
@@ -280,10 +284,12 @@ while run:
         if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
             levelrestart = level
         
-        if player.mask.overlap(treasure.mask, (x - width / 2 + 7450, y - height / 2 + 1050)):
+        if player.mask.overlap(treasure.mask, (x - width / 2 + 7450, y - height / 2 + 1050)) and level == 1:
             level += 1
             levelreset = level
             levelrestart = level
+        elif player.mask.overlap(treasure.mask, (x - width / 2 + 5000, y - height / 2 + 400)) and level == 2:
+            curState = 4
 
         #screen.fill("#000000")
 
@@ -291,7 +297,7 @@ while run:
         #screen.blit(trashCollectionSurface, (x, y))
         
         #groundSurface = drawLevel1(groundSurface)
-        screen.blit(backgroundsurf, (x - 500, y - 3500))
+        screen.blit(backgroundsurf, (x - 1000, y - 3500))
         screen.blit(groundSurface, (x, y))
         playerSurface = player.drawChar(playerSurface)
         screen.blit(playerSurface, (width / 2, height / 2))
@@ -350,6 +356,28 @@ while run:
                 curState = 2
         else:
             screen.blit(inventorybutton.img, (width - 150, 25))
+    if curState == 4:
+        screen.fill("#FFFFFF")
+        youwin = transform.scale(image.load("images/You win.png"), (width, width / 200 * 128))
+        screen.blit(youwin, (width / 4 + width / 52, height / 24))
+    if curState == 5:
+        screen.fill("#FFFFFF")
+        if mousebuttondown:
+            cutscene += 1
+        if cutscene > 1:
+            #150, 128
+            tmp = transform.scale(image.load("images/CutScene1.png"), (width / 4 * 3, width / 4 * 3 / 150 * 128))
+            screen.blit(tmp, (0, 0))
+        if cutscene > 2:
+            #150, 128
+            tmp = transform.scale(image.load("images/CutScene2.png"), (width / 4 * 3, width / 4 * 3 / 150 * 128))
+            screen.blit(tmp, (width / 2 - 150, 30))
+        if cutscene > 3:
+            #150, 128
+            tmp = transform.scale(image.load("images/CutScene3.png"), (width / 4 * 3, width / 4 * 3 / 150 * 128))
+            screen.blit(tmp, (25, height / 2))
+        if cutscene == 5:
+            curState = 3
     display.flip()
     clock.tick(60)
 
