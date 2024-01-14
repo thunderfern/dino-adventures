@@ -21,7 +21,7 @@ playerRight = PlayerCollisions("images/player/Collide Right.png")
 playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
 playerBot = PlayerCollisions("images/player/Collide Bot.png")
-groundSurface = drawLevel2(groundSurface)
+groundSurface = drawLevel1(groundSurface)
 ground = Ground(groundSurface)
 
 waters = []
@@ -89,7 +89,7 @@ while run:
     #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
     #screen.blit(trashCollectionSurface, (x, y))
     screen.fill("#000000")
-    groundSurface = drawLevel2(groundSurface)
+    groundSurface = drawLevel1(groundSurface)
     screen.blit(groundSurface, (x, y))
     playerSurface = player.drawChar(playerSurface)
     screen.blit(playerSurface, (width / 2, height / 2))
