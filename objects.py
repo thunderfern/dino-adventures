@@ -89,11 +89,6 @@ class TrashLayer(sprite.Sprite):
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
     
-
-class Water(sprite.Sprite):
-    def __init__(self):
-        super(Water, self).__init__()
-
 class Button(sprite.Sprite):
     def __init__(self):
         super(Button, self).__init__()
@@ -111,3 +106,9 @@ class Mouse(sprite.Sprite):
         self.mask = mask.from_surface(self.surf)
         self.rect = self.mask.get_rect()
         
+class Treasure(sprite.Sprite):
+    def __init__(self):
+        super(Treasure, self).__init__()
+        self.img = transform.scale(image.load("images/buttons/Play Button Normal State.png"), (125, 125)).convert_alpha()
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()

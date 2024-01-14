@@ -38,7 +38,6 @@ obstacleSurface = Surface((10000, 10000)).convert_alpha()
 xchange, ychange, x, y = 0, 0, 500, 0
 
 player = Player()
-trash1 = Trash(transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125)), (0, 0))
 playerRight = PlayerCollisions("images/player/Collide Right.png")
 playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
@@ -46,7 +45,7 @@ playerBot = PlayerCollisions("images/player/Collide Bot.png")
 
 waters = []
 trashes = []
-trashCollection = [trash1, trash1, trash1, trash1]
+trashCollection = [Trash(bottle, (0, 0)), Trash(bag, (0, 0)), Trash(plastic, (0, 0)), Trash(battery, (0, 0))]
 
 #1 is start screen, 2 is trash collection screen
 curState = 1
