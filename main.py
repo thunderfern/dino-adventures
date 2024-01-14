@@ -52,12 +52,12 @@ while run:
                 player.change(3)
     curkeys = key.get_pressed()
     if curkeys[K_LEFT]:
-        x += 5
+        x += 10
     if curkeys[K_RIGHT]:
         if playerright.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
             pass
         else:
-            x -= 5
+            x -= 10
    # x = max(0, x)
     #y = max(0, y)
     tmp1, tmp2 = 0, 0
