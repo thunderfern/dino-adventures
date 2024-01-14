@@ -103,18 +103,20 @@ bag = transform.scale(image.load("images/trash/Plastic Bag.png"), (125, 125))
 plastic = transform.scale(image.load("images/trash/Microplastic.png"), (125, 125))
 batter = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
 
-level1Trash = [Trash(bottle), Trash(bag), Trash(bottle), Trash(plastic), Trash(batter)]
+level1Trash = [Trash(bottle), Trash(bag), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
 
 def drawTrash1(surface):
     surface.fill((0, 0, 0, 0))
     if level1Trash[0].collected == False:
-        surface.blit(level1Trash[0].img, (500 + 125, 800 - (3 * 125)))
+        surface.blit(level1Trash[0].img, (500 + 125, 800 - (125 * 3.5)))
     if level1Trash[1].collected == False:
-        surface.blit(level1Trash[1].img, (0, 0))
+        surface.blit(level1Trash[1].img, (1800, 800 - (125 * 3)))
     if level1Trash[2].collected == False:
-        surface.blit(level1Trash[2].img, (0, 0))
+        surface.blit(level1Trash[2].img, (2500, 800 - (125 * 4)))
     if level1Trash[3].collected == False:
-        surface.blit(level1Trash[3].img, (0, 0))
+        surface.blit(level1Trash[3].img, (2500 + (125 * 7.5), 800 - (125 * 6)))
     if level1Trash[4].collected == False:
-        surface.blit(level1Trash[4].img, (0, 0))
+        surface.blit(level1Trash[4].img, (2500 + (125 * 9), 800 - (125 * 6)))
+    if level1Trash[5].collected == False:
+        surface.blit(level1Trash[5].img, (4000 + (125 * 11), 800 - (125 * 5)))
     return surface
