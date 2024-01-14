@@ -8,14 +8,22 @@ screen = display.set_mode()
 width, height = screen.get_size()
 clock = time.Clock()
 
+#trash
+bottle = transform.scale(image.load("images/trash/Plastic Bottle.png"), (125, 125))
+bag = transform.scale(image.load("images/trash/Plastic Bag.png"), (125, 125))
+plastic = transform.scale(image.load("images/trash/Microplastic.png"), (125, 125))
+batter = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
+
+level1Trash = [Trash(bottle), Trash(bag), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
+
 #initializing the surfaces
+playerSurface = Surface((width, height)).convert_alpha()
 trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((10000, 10000)).convert_alpha()
 obstacleSurface = Surface((10000, 10000)).convert_alpha()
-playerSurface = Surface((width, height)).convert_alpha()
 levelTrashSurface = Surface((10000, 10000)).convert_alpha()
 obstacleSurface = Surface((10000, 10000)).convert_alpha()
-levelTrashSurface = drawTrash1(levelTrashSurface)
+levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
 
 xchange, ychange, x, y = 0, 0, 500, 0
 
