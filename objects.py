@@ -90,10 +90,10 @@ class TrashLayer(sprite.Sprite):
         self.rect = self.mask.get_rect()
     
 class Button(sprite.Sprite):
-    def __init__(self):
+    def __init__(self, norm, hover, sz):
         super(Button, self).__init__()
-        self.img = transform.scale(image.load("images/buttons/Play Button Normal State.png"), (125, 125)).convert_alpha()
-        self.hoverimg = transform.scale(image.load("images/buttons/Play Button Hover State.png"), (125, 125)).convert_alpha()
+        self.img = transform.scale(image.load(norm), (sz, sz)).convert_alpha()
+        self.hoverimg = transform.scale(image.load(hover), (sz, sz)).convert_alpha()
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
 

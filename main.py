@@ -73,13 +73,15 @@ ground = Ground(groundSurface)
 obstacle = Obstacle(obstacleSurface)
 trash = TrashLayer(levelTrashSurface)
 levelreset = level
-playbutton = Button()
+playbutton = Button("images/buttons/Play Button Normal State.png", "images/buttons/Play Button Hover State.png", 125)
+inventorybutton = Button("images/buttons/Inventory Normal.png", "images/buttons/Inventory Hover.png", 125)
 mouseblock = Mouse()
 treasure = Treasure()
 backgroundsurf = Surface((10000, 10000)).convert_alpha()
 backgroundsurf.blit(transform.scale(image.load("images/Placeholder BG.png"), (19200 / 2, 10800 / 2)), (0, 0))
 #1920, 1080
 mousebuttondown = False
+mousebuttonup = True
 upkey = False
 rightkey = False
 downkey = False
@@ -102,8 +104,11 @@ while run:
                     upkey = True
                 if e.key == K_SPACE:
                     spacekey = True
-            if e.type == MOUSEBUTTONDOWN:
+            if e.type == MOUSEBUTTONDOWN and mousebuttonup == True:
                 mousebuttondown = True
+                mousebuttonup = False
+            if e.type == MOUSEBUTTONUP:
+                mousebuttonup = True
             #200/128
     if curState == 1:
         mousex, mousey = mouse.get_pos()
@@ -115,15 +120,19 @@ while run:
         else:
             screen.blit(playbutton.img, (width / 2 - 125 / 2, height / 2 - 125 / 2))
 
-    if curState == 2:
-        for e in event.get():
-            if e.type == MOUSEBUTTONDOWN:
-                mousex, mousey = mouse.get_pos()
-
+    elif curState == 2:
+        mousex, mousey = mouse.get_pos()
+        screen.fill("#FFFFFF")
+        if inventorybutton.mask.overlap(mouseblock.mask, (width - mousex - 25, -25 + mousey)):
+            screen.blit(inventorybutton.hoverimg, (width - 150, 25))
+            if mousebuttondown:
+                curState = 3
+        else:
+            screen.blit(inventorybutton.img, (width - 150, 25))
         tmp = []
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
-    if curState == 3:
+    elif curState == 3:
         justjumped = False
         scaling = False
         if levelreset == 1:
@@ -283,6 +292,15 @@ while run:
                     levelTrashSurface = drawTrash1(levelTrashSurface, level2Trash)
 
         screen.blit(levelTrashSurface, (x, y))
+
+        #inventory button
+        mousex, mousey = mouse.get_pos()
+        if inventorybutton.mask.overlap(mouseblock.mask, (width - mousex - 25, -25 + mousey)):
+            screen.blit(inventorybutton.hoverimg, (width - 150, 25))
+            if mousebuttondown:
+                curState = 2
+        else:
+            screen.blit(inventorybutton.img, (width - 150, 25))
     display.flip()
     clock.tick(60)
 
