@@ -109,6 +109,6 @@ class Mouse(sprite.Sprite):
 class Treasure(sprite.Sprite):
     def __init__(self):
         super(Treasure, self).__init__()
-        self.img = transform.scale(image.load("images/buttons/Play Button Normal State.png"), (125, 125)).convert_alpha()
+        self.img = transform.scale(image.load("images/Treasure.png"), (125, 125)).convert_alpha()
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()

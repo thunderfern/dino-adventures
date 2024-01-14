@@ -33,7 +33,8 @@ trashCollectionSurface = Surface((width, height))
 groundSurface = Surface((10000, 10000)).convert_alpha()
 obstacleSurface = Surface((10000, 10000)).convert_alpha()
 levelTrashSurface = Surface((10000, 10000)).convert_alpha()
-obstacleSurface = Surface((10000, 10000)).convert_alpha()
+treasureSurface = Surface((10000, 10000)).convert_alpha()
+treasureSurface.fill((0, 0, 0, 0))
 
 xchange, ychange, x, y = 0, 0, 500, 0
 
@@ -75,6 +76,7 @@ trash = TrashLayer(levelTrashSurface)
 levelreset = level
 playbutton = Button()
 mouseblock = Mouse()
+treasure = Treasure()
 mousebuttondown = False
 upkey = False
 rightkey = False
@@ -128,9 +130,14 @@ while run:
             groundSurface = drawLevel1(groundSurface)
             obstacleSurface = drawObstacle1(obstacleSurface)
             levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+            treasureSurface.fill((0, 0, 0, 0))
+            treasureSurface.blit(treasure.img, (7450, 1050))
             x = 500
             y = 0
             ychange = 0
+            ground = Ground(groundSurface)
+            obstacle = Obstacle(obstacleSurface)
+            trash = TrashLayer(levelTrashSurface)
         elif levelreset == 2:
             for t in level2Trash:
                 t.collected = False
@@ -140,6 +147,9 @@ while run:
             x = 500
             y = 0
             ychange = 0
+            ground = Ground(groundSurface)
+            obstacle = Obstacle(obstacleSurface)
+            trash = TrashLayer(levelTrashSurface)
 
         levelreset = 0
 
@@ -226,7 +236,10 @@ while run:
         if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
             levelreset = level
         
-        
+        if player.mask.overlap(treasure.mask, (x - width / 2 + 7450, y - height / 2 + 1050)):
+            level += 1
+            levelreset = level
+
         screen.fill("#000000")
 
         #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
@@ -237,13 +250,17 @@ while run:
         screen.blit(groundSurface, (x, y))
         playerSurface = player.drawChar(playerSurface)
         screen.blit(playerSurface, (width / 2, height / 2))
+        screen.blit(treasureSurface, (x, y))
         #
         #print(x, y)
         #levelTrashSurface = drawTrash1(levelTrashSurface)
         
         #screen.blit(levelTrashSurface, (x, y))
         screen.blit(obstacleSurface, (x, y))
-        player.updateState()
+        if curkeys[K_LEFT] or curkeys[K_RIGHT] or curkeys[K_UP] or curkeys[K_w] or curkeys[K_a] or curkeys[K_d] or xchange != 0 or ychange != 0:
+            player.updateState()
+        else:
+            player.state = 8
         if level == 1:
             for i in range(0, len(level1Trash)):
                 #screen.blit(level1Trash[i].mask.to_surface(), (x + level1Trash[i].x, y + level1Trash[i].y))
