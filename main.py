@@ -123,6 +123,23 @@ while run:
     elif curState == 2:
         mousex, mousey = mouse.get_pos()
         screen.fill("#FFFFFF")
+
+        locked = transform.scale(image.load("images/Locked.png"), (height / 5 * 2, height / 5 * 2)).convert_alpha()
+        unlocked = transform.scale(image.load("images/Unlocked.png"), (height / 5 * 2, height / 5 * 2)).convert_alpha()
+        img1, img2, img3, img4 = locked, locked, locked, locked
+        if trashCollection[0].collected:
+            img1 = unlocked
+            img1.blit(bottle, (0, 0))
+        if trashCollection[1].collected:
+            img2 = unlocked
+        if trashCollection[2].collected:
+            img3 = unlocked
+        if trashCollection[3].collected:
+            img4 = unlocked
+        screen.blit(img1, (width / 7, height / 12))
+        screen.blit(img2, (width / 7 * 2 + height / 5 * 2, height / 12))
+        screen.blit(img3, (width / 7, height / 12 * 2 + height / 5 * 2))
+        screen.blit(img4, (width / 7 * 2 + height / 5 * 2, height / 12 * 2 + height / 5 * 2))
         if inventorybutton.mask.overlap(mouseblock.mask, (width - mousex - 25, -25 + mousey)):
             screen.blit(inventorybutton.hoverimg, (width - 150, 25))
             if mousebuttondown:
@@ -282,6 +299,14 @@ while run:
                 if (player.mask.overlap(level1Trash[i].mask, (x + level1Trash[i].x - width / 2, y + level1Trash[i].y - height / 2))):
                     level1Trash[i].collected = True
                     levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+                    if level1Trash[i].img == bottle:
+                        trashCollection[0].collected = True
+                    if level1Trash[i].img == bag:
+                        trashCollection[1].collected = True
+                    if level1Trash[i].img == plastic:
+                        trashCollection[2].collected = True
+                    if level1Trash[i].img == battery:
+                        trashCollection[3].collected = True
         else:
             for i in range(0, len(level2Trash)):
                 #screen.blit(level1Trash[i].mask.to_surface(), (x + level1Trash[i].x, y + level1Trash[i].y))
@@ -290,7 +315,14 @@ while run:
                 if (player.mask.overlap(level2Trash[i].mask, (x + level2Trash[i].x - width / 2, y + level2Trash[i].y - height / 2))):
                     level2Trash[i].collected = True
                     levelTrashSurface = drawTrash1(levelTrashSurface, level2Trash)
-
+                    if level2Trash[i].img == bottle:
+                        trashCollection[0].collected = True
+                    if level2Trash[i].img == bag:
+                        trashCollection[1].collected = True
+                    if level2Trash[i].img == plastic:
+                        trashCollection[2].collected = True
+                    if level2Trash[i].img == battery:
+                        trashCollection[3].collected = True
         screen.blit(levelTrashSurface, (x, y))
 
         #inventory button
