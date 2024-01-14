@@ -27,6 +27,8 @@ grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), 
 grassFloatR = transform.scale(image.load("images/blocks/grass block float right.png"), (125, 125))
 grassFloatM = transform.scale(image.load("images/blocks/grass block float middle.png"), (125, 125))
 grassFloatL = transform.scale(image.load("images/blocks/grass block float left.png"), (125, 125))
+grassTop = transform.scale(image.load("images/blocks/grass block top.png"), (125, 125))
+grassMiddle = transform.scale(image.load("images/blocks/grass block middle.png"), (125, 125))
 fleshFloat = transform.scale(image.load("images/blocks/flesh block float.png"), (125, 125))
 fleshFloatR = transform.scale(image.load("images/blocks/flesh block float right.png"), (125, 125))
 fleshFloatM = transform.scale(image.load("images/blocks/flesh block float middle.png"), (125, 125))
@@ -38,8 +40,8 @@ def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))
     # draw wall barrier
     for i in range (0, 6):
-        surface.blit(grass5, (0, 800 - (125 * i)))
-    surface.blit(grass2, (0, 800 - (125 * 6)))
+        surface.blit(grassMiddle, (0, 800 - (125 * i)))
+    surface.blit(grassTop, (0, 800 - (125 * 6)))
     # draw ground
     for i in range(0, 50):
         surface.blit(grass2, (i * 125, 800))
@@ -48,10 +50,10 @@ def drawLevel1(surface):
         surface.blit(grassFloatM, (500 + 125, 500))
         surface.blit(grassFloatR, (500 + (125 * 2), 500))
     # small vertical
-    surface.blit(grass2, (1300, 800 - 125))
+    surface.blit(grassTop, (1300, 800 - 125))
     # medium vertical
-    surface.blit(grass5, (1800, 800 - 125))
-    surface.blit(grass2, (1800, 800 - (125 * 2)))
+    surface.blit(grass4, (1800, 800 - 125))
+    surface.blit(grassTop, (1800, 800 - (125 * 2)))
     # small vert
     surface.blit(grass3, (1800 + 125, 800 - 125))
     # large vertical ground
@@ -81,8 +83,8 @@ def drawLevel1(surface):
     surface.blit(grass5, (2500 + (125 * 8), 800 - (125 * 2)))
     surface.blit(grass1, (2500 + (125 * 8), 800 - (125 * 3)))
     # end of high ground
-    surface.blit(grass6, (2500 + (125 * 9), 800 - 125))
-    surface.blit(grass5, (2500 + (125 * 9), 800 - (125 * 2)))
+    surface.blit(grass5, (2500 + (125 * 9), 800 - 125))
+    surface.blit(grass6, (2500 + (125 * 9), 800 - (125 * 2)))
     surface.blit(grass3, (2500 + (125 * 9), 800 - (125 * 3)))
     # step
     surface.blit(grass3, (3750, 800 - 125))
@@ -95,12 +97,12 @@ def drawLevel1(surface):
     surface.blit(grassFloat, (4000 + (125 * 5), 800 - (125 * 5)))
     surface.blit(grassFloat, (4000 + (125 * 8), 800 - (125 * 3)))
     #vertical bit
-    surface.blit(grass2, (4000 + (125 * 11), 800 - (125 * 6)))
-    surface.blit(grass5, (4000 + (125 * 11), 800 - (125 * 5)))
-    surface.blit(grass5, (4000 + (125 * 11), 800 - (125 * 4)))
-    surface.blit(grass5, (4000 + (125 * 11), 800 - (125 * 3)))
-    surface.blit(grass5, (4000 + (125 * 11), 800 - (125 * 2)))
-    surface.blit(grass5, (4000 + (125 * 11), 800 - 125))
+    surface.blit(grassTop, (4000 + (125 * 11), 800 - (125 * 6)))
+    surface.blit(grassMiddle, (4000 + (125 * 11), 800 - (125 * 5)))
+    surface.blit(grassMiddle, (4000 + (125 * 11), 800 - (125 * 4)))
+    surface.blit(grassMiddle, (4000 + (125 * 11), 800 - (125 * 3)))
+    surface.blit(grass4, (4000 + (125 * 11), 800 - (125 * 2)))
+    surface.blit(grass4, (4000 + (125 * 11), 800 - 125))
     # end level platform
     for i in range (0,3):
         surface.blit(grass5, (5500 + (i * 125), 800 - 125))
