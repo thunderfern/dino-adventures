@@ -14,8 +14,18 @@ bag = transform.scale(image.load("images/trash/Plastic Bag.png"), (125, 125))
 plastic = transform.scale(image.load("images/trash/Microplastic.png"), (125, 125))
 batter = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
 
-level1Trash = [Trash(bottle), Trash(bag), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
-level2Trash = [Trash(bag), Trash(batter), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
+level1Trash = [Trash(bottle, (500 + 125, 800 - (125 * 3.5))), 
+               Trash(bag, (1800, 800 - (125 * 3))), 
+               Trash(bottle, (2700, 800 - (125 * 5))), 
+               Trash(plastic, (2500 + (125 * 7.5), 800 - (125 * 6))), 
+               Trash(batter, (4000 + (125 * 2), 800 - (125 * 6))), 
+               Trash(bag, (4000 + (125 * 10), 800 - (125 * 5)))]
+level2Trash = [Trash(bag, (125 * 6, 800 - (125 * 2))), 
+               Trash(batter, (1800, 800 - (125 * 4))), 
+               Trash(bottle, (2475, 800 - (125 * 3))), 
+               Trash(plastic, (3100, 800 - (125 * 4))), 
+               Trash(batter, (3700, 800 - (125 * 3))), 
+               Trash(bag, (4300, 800 - (125 * 4)))]
 
 #initializing the surfaces
 playerSurface = Surface((width, height)).convert_alpha()
