@@ -162,22 +162,8 @@ while run:
         ychange = 2
     
     if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
-        print("ur sooo dead")
         levelreset = level
-    for i in range(0, len(level1Trash)):
-        if (player.mask.overlap(level1Trash[i].mask, (x - width / 2, y - height / 2))):
-            print("mm")
-    #if player.mask.overlap(trash.mask, (x - width / 2, y - height / 2)):
-        #print("skill issue")
-        #for i in range(0, len(level1Trash)):
-            #if level1Trash[i].collected:
-                #continue
-            #if (player.mask.overlap(level1Trash[i].mask, (x - width / 2, y - height / 2))):
-                #level1Trash[i].collected = True
-                #print(i)
-        #levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
-        #trash.update(levelTrashSurface)
-        
+    
     #if curState == 1:
     #    pass
     if curState == 2:
