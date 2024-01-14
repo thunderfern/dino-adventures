@@ -69,6 +69,19 @@ class Trash(sprite.Sprite):
         self.mask = mask.from_surface(self.img)
         self.rect = self.mask.get_rect()
 
+class TrashLayer(sprite.Sprite):
+    def __init__(self, img):
+        super(TrashLayer, self).__init__()
+        self.img = img
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()
+
+    def update(self, img):
+        self.img = img
+        self.mask = mask.from_surface(self.img)
+        self.rect = self.mask.get_rect()
+    
+
 class Water(sprite.Sprite):
     def __init__(self):
         super(Water, self).__init__()

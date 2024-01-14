@@ -15,6 +15,7 @@ plastic = transform.scale(image.load("images/trash/Microplastic.png"), (125, 125
 batter = transform.scale(image.load("images/trash/Battery.png"), (125, 125))
 
 level1Trash = [Trash(bottle), Trash(bag), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
+level2Trash = [Trash(bag), Trash(batter), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
 
 #initializing the surfaces
 playerSurface = Surface((width, height)).convert_alpha()
@@ -23,7 +24,6 @@ groundSurface = Surface((10000, 10000)).convert_alpha()
 obstacleSurface = Surface((10000, 10000)).convert_alpha()
 levelTrashSurface = Surface((10000, 10000)).convert_alpha()
 obstacleSurface = Surface((10000, 10000)).convert_alpha()
-levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
 
 xchange, ychange, x, y = 0, 0, 500, 0
 
@@ -33,10 +33,6 @@ playerRight = PlayerCollisions("images/player/Collide Right.png")
 playerLeft = PlayerCollisions("images/player/Collide Left.png")
 playerTop = PlayerCollisions("images/player/Collide Top.png")
 playerBot = PlayerCollisions("images/player/Collide Bot.png")
-groundSurface = drawLevel1(groundSurface)
-obstacleSurface = drawObstacle1(obstacleSurface)
-ground = Ground(groundSurface)
-obstacle = Obstacle(obstacleSurface)
 
 waters = []
 trashes = []
@@ -44,6 +40,7 @@ trashCollection = [trash1, trash1, trash1, trash1]
 
 #1 is start screen, 2 is trash collection screen
 curState = 2
+level = 2
 
 #curState 1
 
@@ -54,6 +51,17 @@ trashState = 0
 run = True
 doublejump = False
 justjumped = False
+if level == 1:
+    groundSurface = drawLevel1(groundSurface)
+    obstacleSurface = drawObstacle1(obstacleSurface)
+    levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+else:
+    groundSurface = drawLevel2(groundSurface)
+    obstacleSurface = drawObstacle1(obstacleSurface)
+    levelTrashSurface = drawTrash2(levelTrashSurface, level2Trash)
+ground = Ground(groundSurface)
+obstacle = Obstacle(obstacleSurface)
+trash = TrashLayer(levelTrashSurface)
 while run:
     justjumped = False
     for e in event.get():
@@ -92,8 +100,6 @@ while run:
     #if curkeys[K_UP]:
         #if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
             #ychange -= 25
-   
-    
     if playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)) and justjumped == False:
         while playerBot.mask.overlap(ground.mask, (x - width / 2, y - height / 2)):
             y += 1
@@ -109,6 +115,20 @@ while run:
     
     if player.mask.overlap(obstacle.mask, (x - width / 2, y - height / 2)):
         print("ur sooo dead")
+    for i in range(0, len(level1Trash)):
+        if (player.mask.overlap(level1Trash[i].mask, (x - width / 2, y - height / 2))):
+            print("mm")
+    #if player.mask.overlap(trash.mask, (x - width / 2, y - height / 2)):
+        #print("skill issue")
+        #for i in range(0, len(level1Trash)):
+            #if level1Trash[i].collected:
+                #continue
+            #if (player.mask.overlap(level1Trash[i].mask, (x - width / 2, y - height / 2))):
+                #level1Trash[i].collected = True
+                #print(i)
+        #levelTrashSurface = drawTrash1(levelTrashSurface, level1Trash)
+        #trash.update(levelTrashSurface)
+        
     #if curState == 1:
     #    pass
     if curState == 2:
@@ -119,19 +139,28 @@ while run:
         tmp = []
         for i in range(0, 3):
             tmp.append(trashCollection[trashState * 4 + i])
+    
+    screen.fill("#000000")
+
     #trashCollectionSurface = drawTrashCollection(trashCollectionSurface, tmp)
     #screen.blit(trashCollectionSurface, (x, y))
-    screen.fill("#000000")
+    
     #groundSurface = drawLevel1(groundSurface)
+    
     screen.blit(groundSurface, (x, y))
     playerSurface = player.drawChar(playerSurface)
     screen.blit(playerSurface, (width / 2, height / 2))
-    #screen.blit(playerright.mask.to_surface(), (width / 2, height / 2))
+    #
     #print(x, y)
     #levelTrashSurface = drawTrash1(levelTrashSurface)
+    
     screen.blit(levelTrashSurface, (x, y))
     screen.blit(obstacleSurface, (x, y))
     player.updateState()
+    for i in range(0, len(level1Trash)):
+        screen.blit(level1Trash[i].mask.to_surface(), (x, y))
+        #if (player.mask.overlap(level1Trash[i].mask, (x - width / 2, y - height / 2))):
+            #print("mm")
     display.flip()
     clock.tick(60)
 

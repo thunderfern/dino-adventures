@@ -128,9 +128,9 @@ def drawTrash1(surface, level1Trash):
         surface.blit(level1Trash[5].img, (4000 + (125 * 10), 800 - (125 * 5)))
     return surface
 
-level2Trash = [Trash(bag), Trash(batter), Trash(bottle), Trash(plastic), Trash(batter), Trash(bag)]
 
-def drawTrash2(surface):
+
+def drawTrash2(surface, level2Trash):
     surface.fill((0, 0, 0, 0))
     if level2Trash[0].collected == False:
         surface.blit(level2Trash[0].img, (125 * 2.5, 800 - (125 * 2)))
@@ -144,6 +144,7 @@ def drawTrash2(surface):
         surface.blit(level2Trash[4].img, (3700, 800 - (125 * 3)))
     if level2Trash[5].collected == False:
         surface.blit(level2Trash[5].img, (4300, 800 - (125 * 4)))
+    return surface
 
 #loading the spikes
         
