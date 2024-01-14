@@ -24,6 +24,10 @@ grass7 = transform.scale(image.load("images/blocks/grass block 7.png"), (125, 12
 grass8 = transform.scale(image.load("images/blocks/grass block 8.png"), (125, 125))
 grass0 = transform.scale(image.load("images/blocks/grass block 9.png"), (125, 125))
 grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
+grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
+grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
+grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
+grassFloat = transform.scale(image.load("images/blocks/grass block float.png"), (125, 125))
 
 def drawLevel1(surface):
     surface.fill((0, 0, 0, 0))
